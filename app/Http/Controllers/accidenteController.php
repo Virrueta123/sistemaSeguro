@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\accidentes;
+use App\Models\afectados;
 use App\Models\propietario;
 use Illuminate\Http\Request;
 
@@ -52,10 +53,16 @@ class accidenteController extends Controller
      */
     public function show($id)
     {
-        $Acx = accidentes::where("Prx_id",$id)->first();
-        $Prx = propietario::where("Prx_id",$id)->first();
+        $Acx = accidentes::where("Prx_Id",$id)->first();
+        $Prx = propietario::where("Prx_Id",$id)->first();
+        if ($Acx) {
+            $Afxs = afectados::where("Acx_Id",$Acx->Acx_Id)->get();
+        }else{
+            $Afxs = [];
+        }
+        
         return view("modules.accidentes.show",[ 
-            "Prx" => $Prx,"Acx" => $Acx
+            "Prx" => $Prx,"Acx" => $Acx,"Afxs" => $Afxs
         ]);
     }
     /**

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\accidentes;
 use App\Models\afectados;
+use App\Models\propietario;
 use Illuminate\Http\Request;
 
 class AfectadosController extends Controller
@@ -28,6 +30,7 @@ class AfectadosController extends Controller
         return view("modules.afectados.create",[
             "Acx_Id" => $Acx_Id
         ]);
+        
     }
     /**
      * Store a newly created resource in storage.
@@ -35,9 +38,27 @@ class AfectadosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$Acx_Id)
     {
-        //
+        
+        $valid = $request->validate([ 
+            "Afx_Nombre" =>"required",
+            "Afx_Apellido" =>"required",
+            "Afx_Dni" =>"required",
+            "Afx_Cel" =>"required",
+        ]);
+        $valid["Acx_id"] = $Acx_Id;
+
+        $Afx = afectados::create($valid);
+        $Acxget =  accidentes::where("Acx_id",$Acx_Id)->first();
+      
+        if( $Afx ){  
+            session()->flash('successo', 'El registro se creo correctamente');
+            return redirect()->route("Accidente.show",$Acxget->Prx_Id);
+        }else{
+            session()->flash('erroro', 'fallo el registro, intentelo de nuevo');
+            return redirect()->route("Accidente.show",$Acxget->Prx_Id);
+        } 
     }
 
     /**

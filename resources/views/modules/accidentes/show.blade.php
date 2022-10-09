@@ -171,7 +171,46 @@
           </div>
 
 
-
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Tabla de registros</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="cat" class="table table-bordered table-striped">
+                <thead class="text-center">
+                <tr >
+                  <th class="text-center">Dni</th>
+                  <th class="text-center">Nombre</th>
+                  <th class="text-center">Apellido</th>
+                  <th class="text-center">Celular</th> 
+                </tr>
+                </thead>
+                <tbody class="text-center">
+                @forelse ( $Afxs as $Afx)
+                  <tr>
+                    <td>{{  $Afx->Afx_Dni }}</td>
+                    <td>{{  $Afx->Afx_Nombre }}</td>
+                    <td>{{  $Afx->Afx_Apellido }}</td>
+                    <td>{{  $Afx->Afx_Cel }}</td>
+                  </tr>
+                @empty
+                <tr>
+                    <td colspan="4"><h4 class="text-center text-warning">Aun no se registro ningun afectado</h4></td>
+                </tr>
+                @endforelse
+                  
+                </tbody>
+                <tfoot class="text-center">
+                    <th class="text-center">Dni</th>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Apellido</th>
+                    <th class="text-center">Celular</th> 
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div> 
 
 
           @endif

@@ -45,9 +45,7 @@
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
-        @enderror   
-
-                               
+        @enderror                      
                                 
       </div>
       <div class="form-group has-feedback">
@@ -71,7 +69,7 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Iniciar session</button>
         </div>
         <!-- /.col -->
       </div>
