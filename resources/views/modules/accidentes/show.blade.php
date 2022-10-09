@@ -28,7 +28,7 @@
         <h3 class="profile-username text-center">Datos del conductor</h3>
 
         <div class="row">
-            <div class="col-xs-6">
+            <div class="col-sm-6">
                 <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">
                       <b>Nro Cat</b> <p class="pull-right text-info">{{ $Prx->Prx_NroCat }}</p>
@@ -45,7 +45,7 @@
                 </ul>
             </div>
 
-            <div class="col-xs-6">
+            <div class="col-sm-6">
                 <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">
                       <b>Vigencia</b> 
@@ -81,7 +81,7 @@
         <h3 class="profile-username text-center">Datos del Vehiculo</h3>
 
         <div class="row">
-            <div class="col-xs-6">
+            <div class="col-sm-6">
                 <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">
                       <b>Nro Placa</b> <p class="pull-right text-info">{{ $Prx->Prx_NroPlaca }}</p>
@@ -98,7 +98,7 @@
                 </ul>
             </div>
 
-            <div class="col-xs-6">
+            <div class="col-sm-6">
                 <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">
                         <b>Nro Serie</b> <p class="pull-right text-info">{{ $Prx->Prx_NroSerie }}</p>
@@ -128,7 +128,7 @@
               <form id="accidente" role="form" method="POST" action="{{ route("Accidente.store",$Prx->Prx_Id) }}">
                 @csrf
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-sm-12">
                         <div class="form-group">
                             <label>Descripcion</label>
                             <input  name="Acx_Desc" id="Acx_Desc" class="form-control" >
@@ -151,7 +151,7 @@
               <h3 class="profile-username text-center">Accidente</h3>
 
               <div class="row">
-                <div class="col-xs-12">
+                <div class="col-sm-12">
                     <ul class="list-group list-group-unbordered">
                         <li class="list-group-item">
                           <b>Descripcion del accidentes</b> <p class="pull-right text-info">{{ $Acx->Acx_Desc }}</p>
@@ -161,7 +161,7 @@
                 </div>
             </div>
             <div class="row m-2">
-                <div class="col-xs-12">
+                <div class="col-sm-12">
                     <a href="{{ route("Afectado.create",$Acx->Acx_Id) }}" class="btn btn-block   btn-dropbox "> 
                         <i class="fa fa-add"> </i> agregar a personas afectadas
                     </a>

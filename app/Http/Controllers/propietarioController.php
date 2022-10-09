@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Peru\Jne\DniFactory;
 use App\Models\propietario;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
+use Validator;
 class propietarioController extends Controller
 {
     /**
@@ -116,7 +117,27 @@ class propietarioController extends Controller
     {
         //
     }
-
+    public function consultadniajax(Request $req)
+    {
+        $validator = Validator::make($req->all(), [
+            "dni"=>"required|numeric|digits:8" 
+        ]);
+        $dni = $req->all();
+        $dni = $dni["dni"];
+        
+        if($validator->passes()){
+            $factory = new DniFactory();
+            $cs = $factory->create(); 
+            $person = $cs->get($dni);
+            if (!$person) {
+                echo '{"tipo":"error","mensaje":"dni no encontrado"}'; 
+            }else{
+                echo '{"tipo":"success","mensaje":'.json_encode($person).'}'; 
+            } 
+        }else{
+            echo '{"tipo":"validate","mensaje":'.json_encode($validator->errors()->all()).'}'; 
+        } 
+    }
     public function data(Request $request){
         if ($request->ajax()) {
             $model = propietario::select("*") 

@@ -27,29 +27,34 @@
       <h3 class="box-title">Formulario de Registro</h3>
     </div>
     <!-- /.box-header -->
-    <div class="col-xs-12">
+    <div class="col-sm-12">
          <h4 class="text-info"><i class="fa fa-user"></i> Datos del Propietario</h4>
     </div>
     
     <div class="box-body">
+       
       <form id="propietario" role="form" method="POST" action="{{ route("Propietario.store") }}">
-    
+       
         @csrf
+    
         <div class="row">
-            <div class="col-xs-4">
-                <div class="form-group">
-                    <label>Dni</label>
-                    <input  name="Prx_Dni" id="Prx_Dni" class="form-control" data-inputmask="'mask': ['999-999-9999 [x99999]', '+099 99 99 9999[9]-9999']">
- 
-                </div>   
+            <div class="col-sm-4">
+                <label>Dni</label>
+                
+                 <div class="input-group input-group">
+                    <input name="Prx_Dni" id="Prx_Dni" class="form-control" data-inputmask="'mask': ['999-999-9999 [x99999]', '+099 99 99 9999[9]-9999']">
+                        <span class="input-group-btn">
+                          <button id="BtnDni" type="button" class="btn btn-info btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                  </div>
             </div>
-            <div class="col-xs-4">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <label>Ubigueo</label>
                     <input  name="Prx_Ubigeo" id="Prx_Ubigeo" class="form-control"  > 
                 </div>   
             </div>
-            <div class="col-xs-4">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <label>Vigencia</label>
                     <p >
@@ -61,28 +66,28 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-6">
+            <div class="col-sm-6">
                 <div class="form-group">
                     <label>Nombres</label>
-                    <input type="text" name="Prx_Nombre" class="form-control" placeholder="Nombres...">
+                    <input type="text" id="Prx_Nombre" name="Prx_Nombre" class="form-control" placeholder="Nombres...">
                 </div>   
             </div>
-            <div class="col-xs-6">
+            <div class="col-sm-6">
                 <div class="form-group">
                     <label>Apellido</label>
-                    <input type="text" name="Prx_Apellido" class="form-control" placeholder="Apellido...">
+                    <input type="text" id="Prx_Apellido" name="Prx_Apellido" class="form-control" placeholder="Apellido...">
                 </div> 
             </div>
         </div>
 
         <div class="row">
-            <div class="col-xs-6">
+            <div class="col-sm-6">
                 <div class="form-group">
                     <label>Celular</label>
                     <input type="text" id="Prx_Contacto" name="Prx_Contacto" class="form-control" placeholder="Celular...">
                 </div>   
             </div>
-            <div class="col-xs-6">
+            <div class="col-sm-6">
                 <div class="form-group">
                     <label>Direccion</label>
                     <input type="text" name="Prx_Direccion" class="form-control" placeholder="Direccion...">
@@ -90,30 +95,30 @@
             </div>
         </div>
         
-        <div class="col-xs-12">
+        <div class="col-sm-12">
         <h4 class="text-info"><i class="fa fa-automobile"></i> Datos del Vehiculo</h4>
         </div>
         
         <div class="row">
-            <div class="col-xs-2">
+            <div class="col-sm-2">
                 <div class="form-group">
                     <label>Numero Placa</label>
                     <input type="text" name="Prx_NroPlaca" id="Prx_NroPlaca" class="form-control"  > 
                 </div>   
             </div>
-            <div class="col-xs-4">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <label>Numero de serie</label>
                     <input type="text" name="Prx_NroSerie" id="Prx_NroSerie" class="form-control"  > 
                 </div>   
             </div>
-            <div class="col-xs-4">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <label>Marca</label>
                     <input type="text" name="Prx_Marca" id="Prx_Marca" class="form-control"  > 
                 </div>
             </div>
-            <div class="col-xs-2">
+            <div class="col-sm-2">
                 <div class="form-group">
                     <label>Numero de asientos</label>
                     <input type="number" name="Prx_NroAsientos" id="Prx_NroAsientos" class="form-control"  > 
@@ -122,19 +127,19 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-4">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <label>Modelo</label>
                     <input type="text" name="Prx_Modelo" id="Prx_Modelo" class="form-control"  > 
                 </div>
             </div>
-            <div class="col-xs-2">
+            <div class="col-sm-2">
                 <div class="form-group">
                     <label>Años de uso</label>
                     <input type="number" name="Prx_Uso" id="Prx_Uso" class="form-control"  > 
                 </div>
             </div>
-            <div class="col-xs-4">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <label>Clase Vehicular</label>
                     <select name="Prx_Categoria" class="form-control">
@@ -145,7 +150,7 @@
                     </select>
                 </div>   
             </div>
-            <div class="col-xs-2">
+            <div class="col-sm-2">
                 <div class="form-group">
                     <label>Año</label>
                     <select name="Prx_Ano" class="form-control">
@@ -196,6 +201,7 @@
         </div>
 
       </form>
+    
     </div>
     <!-- /.box-body -->
   </div>
@@ -211,6 +217,76 @@
    
 $(document).ready(function(){
     
+    $.ajaxSetup({
+    headers: {
+       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+}); 
+
+    $("#BtnDni").click(function (e) {  
+        
+        dni = $("#Prx_Dni").val();
+        
+        $.ajax({ 
+            type: "POST",
+            url: "{{ route('consultadniajax') }}",
+            data: { dni:dni },
+            beforeSend: function(){
+                 
+            },
+            success: function(response) {
+           
+                data = JSON.parse(response) 
+        
+                
+                switch (data.tipo) {
+                    case 'success':
+                        $("#Prx_Nombre").val(data.mensaje.nombres)
+                        $("#Prx_Apellido").val(data.mensaje.apellidoPaterno+" "+ data.mensaje.apellidoMaterno) 
+                        console.log(data.mensaje.nombres)
+                        Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: "Se encontro los datos",
+                                showConfirmButton: false,
+                                timer: 2500
+                        }) 
+                        break;
+
+                    case 'error':
+                        Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: "Se encontro los datos",
+                                showConfirmButton: false,
+                        })    
+                        
+                        $("#Prx_Nombre").val("");
+                        $("#Prx_Apellido").val("");
+                        break;
+
+                    case 'validate':
+                        data.mensaje.forEach(element => {  
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: element,
+                                showConfirmButton: false,
+                                timer: 2500
+                            }) 
+                        });
+                        $("#Prx_Nombre").val("");
+                        $("#Prx_Apellido").val("");
+                    break;
+                
+                        
+                }
+            }
+        }); 
+    });
+
+
+
     $("#Prx_Dni").inputmask("99999999");
   
      

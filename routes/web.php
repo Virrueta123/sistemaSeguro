@@ -43,6 +43,8 @@ Route::patch('/afectados/{id}', [App\Http\Controllers\AfectadosController::class
 Route::delete('/afectados/{id}', [App\Http\Controllers\AfectadosController::class, 'destroy'])->name('Afectado.delete');   
 Route::post('/afectados/{id}', [App\Http\Controllers\AfectadosController::class, 'store'])->name('Afectado.store');
 
+Route::post('/consultadniajax', [App\Http\Controllers\propietarioController::class, 'consultadniajax'])->name('consultadniajax');
+
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

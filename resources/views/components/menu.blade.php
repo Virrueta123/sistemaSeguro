@@ -2,8 +2,8 @@
     <li class="header">Menu De Navegacion</li>
 
     <li>
-      <a href="pages/calendar.html">
-        <i class="fa fa-dashboard"></i> <span>Home</span> 
+      <a href="{{ route("home") }}">
+        <i class="fa fa-home"></i> <span>Home</span> 
       </a>
     </li> 
 

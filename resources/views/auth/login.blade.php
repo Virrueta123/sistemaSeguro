@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Log in</title>
+  <title>Sistema Seguro de accidentes</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{{ asset("bower_components/bootstrap/dist/css/bootstrap.min.css") }}">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset("bower_components/font-awesome/css/font-awesome.min.css") }}">
+  <link rel="stylesheet" href="{{ asset("bower_components/font-awesome/css/all.min.css") }}"> 
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{ asset("bower_components/Ionicons/css/ionicons.min.css") }}">
   <!-- Theme style -->
@@ -30,11 +30,11 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>Admin</b>LTE</a>
+    <a href="#">Sistema Seguro de <b>Accidentes</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <h1 class="login-box-msg">Login</h1>
+    <h1 class="login-box-msg">Inicio de session</h1>
 
     <form method="POST" action="{{ route('login') }}">
       @csrf
@@ -59,17 +59,22 @@
         @enderror
 
       </div>
-      <div class="row">
-        <div class="col-sxs-8">
+      <div class="row ">
+        <div class="col-sm-12">
           <div class="checkbox icheck"> 
+            <input id="remember" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
             <label>
-              <input id="remember" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recuerdame
+               Recuerdame
             </label>
+            
           </div>
         </div>
         <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Iniciar session</button>
+        <div class="col-xs-12">
+          <button type="submit"   class="btn btn-block btn-dropbox "> 
+            <i class="fa fa-door-open"> </i> Iniciar session
+          </button>
+       
         </div>
         <!-- /.col -->
       </div>
