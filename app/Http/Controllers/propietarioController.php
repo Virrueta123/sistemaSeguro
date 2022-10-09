@@ -64,7 +64,7 @@ class propietarioController extends Controller
             "Prx_Modelo" =>"required",
             "Prx_Uso" =>"required"
         ]);
-        $codigo = DB::select('SELECT sistemacat.GenerarCodigoCat() as codigo' )[0]->codigo;
+        $codigo = DB::select('SELECT GenerarCodigoCat() as codigo' )[0]->codigo;
          
       
         $valid["Prx_NroCat"] = $codigo;
