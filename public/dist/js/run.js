@@ -2,7 +2,7 @@ jQuery.validator.addMethod("lettersonly", function(value, element) {
     return this.optional(element) || /^[a-zñÑ ]+$/i.test(value);
 }, "Solo se permiten letras en este campo");
 jQuery.validator.addMethod("noespeciales", function(value, element) {
-    return this.optional(element) || /^[1-9a-zñÑ ]+$/i.test(value);
+    return this.optional(element) || /^[0-9a-zñÑ ]+$/i.test(value);
 }, "no se permiten caracteres especiasl");
 $.validator.setDefaults({
 	highlight: function(element){

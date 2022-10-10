@@ -43,4 +43,8 @@
 <script src="{{ asset("plugins/pdfmake/vfs_fonts.js")}}"></script>
 <script src="{{ asset("plugins/datatables-buttons/js/buttons.html5.min.js")}}"></script>
 <script src="{{ asset("plugins/datatables-buttons/js/buttons.print.min.js")}}"></script>
-<script src="{{ asset("plugins/datatables-buttons/js/buttons.colVis.min.js")}}"></script> 
+<script src="{{ asset("plugins/datatables-buttons/js/buttons.colVis.min.js")}}"></script>
+ 
+
+ <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
+ 

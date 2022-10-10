@@ -19,6 +19,25 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+
+  {{-- loading --}} 
+  <div class="preloadDentaluz" id="preloadDentaluz">
+    <div class="central">
+      <div class="circulo">
+        <div></div><div></div><div></div>
+      </div>
+      <section>
+        
+        <span class="loader-120">Cargando la operacion</span>
+      </section>
+    </div> 
+  </div>
+ 
+
+
+  {{-- endloading --}}
+
+
 <div class="wrapper">
 
   <header class="main-header">
@@ -391,8 +410,14 @@
                timer: 2500
                }) 
     @endif
+
+    window.addEventListener('load', function() {
+        $("#preloadDentaluz").fadeOut()
+    });
+
      
    </script>
+
   @yield('js')
 
 </body>

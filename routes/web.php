@@ -43,10 +43,12 @@ Route::patch('/afectados/{id}', [App\Http\Controllers\AfectadosController::class
 Route::delete('/afectados/{id}', [App\Http\Controllers\AfectadosController::class, 'destroy'])->name('Afectado.delete');   
 Route::post('/afectados/{id}', [App\Http\Controllers\AfectadosController::class, 'store'])->name('Afectado.store');
 
-Route::post('/consultadniajax', [App\Http\Controllers\propietarioController::class, 'consultadniajax'])->name('consultadniajax');
 
+// routes afectados
+Route::get('/vencidos', [App\Http\Controllers\homeController::class, 'vencidos'])->name('Reporte.vencidos'); 
+ Route::get('/diavencidos/{fecha}', [App\Http\Controllers\homeController::class, 'diavencidos'])->name('Reporte.diavencidos'); 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\homeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\homeController::class, 'index'])->name('home');
 

@@ -1,0 +1,124 @@
+ 
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #263238;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #23A8F2;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+ 
+ 
+.circulo {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .circulo div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #fff;
+    border-radius: 50%;
+    animation: circulo 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+  }
+  .circulo div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .circulo div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .circulo div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes circulo {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  
+.nav-btn {
+  color: #fff;
+  text-decoration: none;
+
+}
+
+.loader-120 {
+  width: 300px;
+  font-size: 28px; 
+  color:  rgb(38, 41, 54);  
+  position: absolute; 
+  margin-left: -88px;
+  -webkit-animation: animloader111 8s ease-in infinite;
+          animation: animloader111 8s ease-in infinite;
+}
+ 
+
+
+  
+@-webkit-keyframes animloader111 {
+  0% {
+    filter: blur(0);
+  }
+  50% {
+    filter: blur(3);
+  }
+  100% {
+    filter: blur(0);
+  }
+}
+@keyframes animloader111 {
+    0% {
+        filter: blur(0);
+      }
+      50% {
+        filter: blur(3);
+      }
+      100% {
+        filter: blur(0);
+      }
+}
+
+
+ /* preaload dentaluz */
+ 
+ .preloadDentaluz {
+     background-color: rgba(0, 171, 230, .8);
+     width: 100%;
+     height: 100vh;
+     position: fixed;
+     z-index: 1260;
+     display: block;
+ }
+
+ .preloadDentaluz .central {
+     width: 100px;
+     position: absolute;
+     height: 100px;
+     top: 50%;
+     margin-top: -50px;
+     left: 50%;
+     margin-left: -50px;
+     overflow: visible;
+ }

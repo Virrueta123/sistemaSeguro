@@ -66,12 +66,12 @@ class propietarioController extends Controller
             "Prx_Uso" =>"required"
         ]);
         $codigo = DB::select('SELECT GenerarCodigoCat() as codigo' )[0]->codigo;
-         
-      
+          
         $valid["Prx_NroCat"] = $codigo;
         $valid["Prx_Contacto"] = str_replace(" ", "", $request->all()["Prx_Contacto"]);
         $valid["Prx_VigenciaI"] = $vigenciaI;
         $valid["Prx_VigenciaF"] = $vigenciaF;
+        
         $Prx = propietario::create($valid);
 
         if( $Prx ){  
@@ -102,9 +102,57 @@ class propietarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function edit($id)
+    { 
+        $Prx = propietario::where("Prx_Id",$id)->first();
+        $categoria = ["Monto lineal","Trimovil","Auto"]; 
+        $anos = ["2000","2001","2002","2003", "2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021","2022"]; 
+
+
+        return view("modules.propietario.edit",[ 
+            "Prx" => $Prx,"categoria" => $categoria,"anos" => $anos,
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
-        //
+        $valid = $request->validate([ 
+            "Prx_Nombre" =>"required",
+            "Prx_Apellido" =>"required",
+            "Prx_Dni" =>"required",
+            "Prx_Contacto" =>"required",
+            "Prx_Direccion" =>"required",
+            "Prx_Ubigeo" =>"required",
+            "Prx_NroPlaca" =>"required",
+            "Prx_Categoria" =>"required",
+            "Prx_Ano" =>"required",
+            "Prx_Marca" =>"required",
+            "Prx_NroAsientos" =>"required",
+            "Prx_NroSerie" =>"required",
+            "Prx_Modelo" =>"required",
+            "Prx_Uso" =>"required",
+            "Prx_VigenciaI"=>"required",
+            "Prx_VigenciaF"=>"required",
+            "Prx_Contacto"=>"required",
+        ]);
+        $valid["Prx_Contacto"] = str_replace(" ", "", $request->all()["Prx_Contacto"]);
+        $Prx = propietario::where("Prx_Id",$id);
+        $Prx = $Prx->update($valid);
+
+        if( $Prx ){  
+            session()->flash('successo', 'El registro se actualizo correctamente');
+            return redirect()->route("Propietario.index");
+        }else{
+            session()->flash('erroro', 'fallo el registro, intentelo de nuevo');
+            return redirect()->route("Propietario.index");
+        } 
     }
 
     /**
@@ -148,16 +196,16 @@ class propietarioController extends Controller
                    return $Data->Prx_Nombre." ".$Data->Prx_Apellido; 
                 })
                 ->addColumn("estado",function($Data){  
-                    if($Data->activo == "A"){
+                    if($Data->Prx_VigenciaF  >  Carbon::now()->format("Y-m-d") ){
                         return "Activo"; 
                     }else{
-                        return "Inactivo";
+                        return "vencido";
                     }  
                 }) 
                 ->addColumn('action', function($Data){
                     $msm = "estas segur@ que desea elminar este cliente";
                     $actionBtn = '
-                    <a href="#"><i class="fa fa-edit fa-2x"></i> </a>
+                    <a href="'.route("Propietario.edit",$Data->Prx_Id).'"><i class="fa fa-edit fa-2x"></i> </a>
                     <a href="'.route("Accidente.show",$Data->Prx_Id).'"><i class="fas fa-car-crash text-warning fa-2x"></i> </a>
                     ';
                     return $actionBtn;
