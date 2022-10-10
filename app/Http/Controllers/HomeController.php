@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\propietario;
+use App\Models\Propietario;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -32,17 +32,17 @@ class HomeController extends Controller
         //         ->where(DB::raw("DATE_ADD(pendientes.Pex_Fecha,interval -1 day)"),fecha_hoy()) 
         //         ->where("pendientes.active","A") 
         //         ->get(); 
-        $nseguros =  propietario:: 
+        $nseguros =  Propietario:: 
         where("activo","A") 
         ->get();
-        $segurosVencidos = propietario::
+        $segurosVencidos = Propietario::
         where("Prx_VigenciaF","<",fecha_hoy())
         ->get();
         $dias = ["1","2","3","4","5","6"];
         $legends = [];
         $data = [];
         foreach ($dias as $dia) {
-            $prxs = count(propietario::
+            $prxs = count(Propietario::
             where("Prx_VigenciaF","=",Carbon::now()->addDay($dia)->format("Y-m-d"))
             ->get());
             array_push($legends,Carbon::now()->addDay($dia)->format("d-m-Y"));
@@ -60,7 +60,7 @@ class HomeController extends Controller
 
     public function vencidos(Request $request){
         if ($request->ajax()) {
-            $model = propietario::
+            $model = Propietario::
             where("Prx_VigenciaF","<",fecha_hoy())
             ->get();
             return DataTables::of($model)
@@ -97,7 +97,7 @@ class HomeController extends Controller
             $fecha = Carbon::parse($fecha)->format("Y-m-d");
             
             if ($request->ajax()) {
-                $model = propietario::
+                $model = Propietario::
                 where("Prx_VigenciaF","=",$fecha)
                 ->get();
                 return DataTables::of($model)

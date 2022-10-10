@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\accidentes;
 use App\Models\afectados;
-use App\Models\propietario;
+use App\Models\Propietario;
 use Illuminate\Http\Request;
 
 class accidenteController extends Controller
@@ -54,7 +54,7 @@ class accidenteController extends Controller
     public function show($id)
     {
         $Acx = accidentes::where("Prx_Id",$id)->first();
-        $Prx = propietario::where("Prx_Id",$id)->first();
+        $Prx = Propietario::where("Prx_Id",$id)->first();
         if ($Acx) {
             $Afxs = afectados::where("Acx_Id",$Acx->Acx_Id)->get();
         }else{

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Peru\Jne\DniFactory;
-use App\Models\propietario;
+use App\Models\Propietario;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -72,7 +72,7 @@ class propietarioController extends Controller
         $valid["Prx_VigenciaI"] = $vigenciaI;
         $valid["Prx_VigenciaF"] = $vigenciaF;
         
-        $Prx = propietario::create($valid);
+        $Prx = Propietario::create($valid);
 
         if( $Prx ){  
             session()->flash('successo', 'El registro se creo correctamente');
@@ -104,7 +104,7 @@ class propietarioController extends Controller
      */
     public function edit($id)
     { 
-        $Prx = propietario::where("Prx_Id",$id)->first();
+        $Prx = Propietario::where("Prx_Id",$id)->first();
         $categoria = ["Monto lineal","Trimovil","Auto"]; 
         $anos = ["2000","2001","2002","2003", "2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021","2022"]; 
 
@@ -143,7 +143,7 @@ class propietarioController extends Controller
             "Prx_Contacto"=>"required",
         ]);
         $valid["Prx_Contacto"] = str_replace(" ", "", $request->all()["Prx_Contacto"]);
-        $Prx = propietario::where("Prx_Id",$id);
+        $Prx = Propietario::where("Prx_Id",$id);
         $Prx = $Prx->update($valid);
 
         if( $Prx ){  
@@ -188,7 +188,7 @@ class propietarioController extends Controller
     }
     public function data(Request $request){
         if ($request->ajax()) {
-            $model = propietario::select("*") 
+            $model = Propietario::select("*") 
             ->get();
             return DataTables::of($model)
                 ->addIndexColumn()
