@@ -36,7 +36,7 @@ class HomeController extends Controller
         where("activo","A") 
         ->get();
         $segurosVencidos = propietario::
-        where("Prx_VigenciaF",">",fecha_hoy())
+        where("Prx_VigenciaF","<",fecha_hoy())
         ->get();
         $dias = ["1","2","3","4","5","6"];
         $legends = [];
