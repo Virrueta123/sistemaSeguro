@@ -16,7 +16,7 @@ class PropietarioFactory extends Factory
      */
     
     public function generar(){
-        return DB::select('SELECT sistemacat.GenerarCodigoCat() as codigo' )[0]->codigo;
+        return DB::select('SELECT GenerarCodigoCat() as codigo' )[0]->codigo;
     }
     public function definition()
     {

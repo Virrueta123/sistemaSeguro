@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Propietario;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         //  \App\Models\User::factory(1)->create();
         for ($i=0; $i < 200; $i++) { 
-            \App\Models\Propietario::factory(1)->create();
+            Propietario::factory(1)->create();
         }
         
     }
