@@ -23,6 +23,9 @@ Route::patch('/propietarios/{id}', [App\Http\Controllers\propietarioController::
 Route::delete('/propietarios/{id}', [App\Http\Controllers\propietarioController::class, 'destroy'])->name('Propietario.delete');   
 Route::post('/propietarios', [App\Http\Controllers\propietarioController::class, 'store'])->name('Propietario.store'); 
 
+Route::post('/consultadniajax', [App\Http\Controllers\propietarioController::class, 'consultadniajax'])->name('consultadniajax'); 
+
+
 // routes accidente
 Route::get('/accidente', [App\Http\Controllers\accidenteController::class, 'index'])->name('Accidente.index'); 
 Route::get('/accidentedata', [App\Http\Controllers\accidenteController::class, 'data'])->name('Accidente.data'); 
