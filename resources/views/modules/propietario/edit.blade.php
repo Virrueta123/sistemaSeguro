@@ -186,7 +186,7 @@
         </div> -->
         
         <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Editar</button>
+            <button type="submit" class="btn btn-primary btn-submit">Editar</button>
         </div>
 
       </form>

@@ -47,9 +47,27 @@ Route::delete('/afectados/{id}', [App\Http\Controllers\AfectadosController::clas
 Route::post('/afectados/{id}', [App\Http\Controllers\AfectadosController::class, 'store'])->name('Afectado.store');
 
 
+// routes usuarios
+Route::get('/usuarios', [App\Http\Controllers\usuarioController::class, 'index'])->name('Usuario.index'); 
+Route::get('/usuariosdata', [App\Http\Controllers\usuarioController::class, 'data'])->name('Usuario.data');
+Route::get('/usuarios/crear', [App\Http\Controllers\usuarioController::class, 'create'])->name('Usuario.create');  
+Route::get('/usuarios/{id}', [App\Http\Controllers\usuarioController::class, 'show'])->name('Usuario.show');
+Route::get('/usuarios/{id}/editar', [App\Http\Controllers\usuarioController::class, 'edit'])->name('Usuario.edit');
+Route::get('/usuarios/{id}/editarperfil', [App\Http\Controllers\usuarioController::class, 'editperfil'])->name('Usuario.editPerfil');
+Route::patch('/usuarios/{id}', [App\Http\Controllers\usuarioController::class, 'update'])->name('Usuario.update');
+Route::patch('/usuarios/{id}', [App\Http\Controllers\usuarioController::class, 'updates'])->name('Usuario.updates');
+Route::delete('/usuarios/{id}', [App\Http\Controllers\usuarioController::class, 'destroy'])->name('Usuario.delete');   
+Route::patch('/usuarios/{id}/suspender', [App\Http\Controllers\usuarioController::class, 'suspender'])->name('Usuario.suspender');
+Route::patch('/usuarios/{id}/activar', [App\Http\Controllers\usuarioController::class, 'activar'])->name('Usuario.activar');
+
+Route::post('/usuarios/{id}', [App\Http\Controllers\usuarioController::class, 'store'])->name('Usuario.store');
+Route::post('/uniqueuser', [App\Http\Controllers\usuarioController::class, 'uniqueuser'])->name('uniqueuser');
+
 // routes afectados
 Route::get('/vencidos', [App\Http\Controllers\HomeController::class, 'vencidos'])->name('Reporte.vencidos'); 
- Route::get('/diavencidos/{fecha}', [App\Http\Controllers\HomeController::class, 'diavencidos'])->name('Reporte.diavencidos'); 
+Route::get('/diavencidos/{fecha}', [App\Http\Controllers\HomeController::class, 'diavencidos'])->name('Reporte.diavencidos'); 
+Route::get('/siniestro', [App\Http\Controllers\HomeController::class, 'siniestro'])->name('Reporte.siniestros'); 
+
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

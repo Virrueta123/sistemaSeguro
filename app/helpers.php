@@ -8,6 +8,10 @@ function fecha_hoy(){
     
 }
 
+function edad( $fecha ){
+    return dateController::parse( $fecha )->age; 
+}
+
 function mesActual(){ 
     return dateController::now()->isoFormat("MM");
 }

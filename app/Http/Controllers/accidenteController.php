@@ -29,10 +29,13 @@ class accidenteController extends Controller
     {
 
         $valid = $request->validate([ 
-            "Acx_Desc" =>"required", 
+            "Acx_Desc" =>"required",
+            "Acx_Lugar" =>"required",
+            "Acx_Direccion" =>"required",
         ]);
 
         $valid["Prx_Id"] = $Prx_Id;
+        $valid["Acx_Created"] = fecha_hoy();
 
         $Acx = accidentes::create($valid);
 
@@ -59,8 +62,7 @@ class accidenteController extends Controller
             $Afxs = afectados::where("Acx_Id",$Acx->Acx_Id)->get();
         }else{
             $Afxs = [];
-        }
-        
+        } 
         return view("modules.accidentes.show",[ 
             "Prx" => $Prx,"Acx" => $Acx,"Afxs" => $Afxs
         ]);

@@ -133,12 +133,27 @@
                             <label>Descripcion</label>
                             <input  name="Acx_Desc" id="Acx_Desc" class="form-control" >
                         </div>   
-                    </div>
-                     
+                    </div> 
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                          <label>Lugar del Accidente</label>
+                          <input  name="Acx_Lugar" id="Acx_Lugar" class="form-control" >
+                      </div>   
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Direccion del Accidente</label>
+                        <input  name="Acx_Direccion" id="Acx_Direccion" class="form-control" >
+                    </div>   
+                  </div>  
                 </div>
     
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Registrar</button>
+                    <button type="submit" class="btn btn-primary btn-submit">Registrar</button>
                 </div>
         
               </form>
@@ -158,7 +173,25 @@
                         </li> 
                     </ul>
                 </div>
-                </div>
+             </div>
+
+             <div class="row">
+              <div class="col-sm-6">
+                  <ul class="list-group list-group-unbordered">
+                      <li class="list-group-item">
+                        <b>Lugar del Accidente</b> <p class="pull-right text-info">{{ $Acx->Acx_Lugar }}</p>
+                      </li> 
+                  </ul>
+              </div>
+              <div class="col-sm-6">
+                <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                      <b>Direccion del Accidente</b> <p class="pull-right text-info">{{ $Acx->Acx_Direccion }}</p>
+                    </li> 
+                </ul>
+            </div>
+            </div> 
+
             </div>
             <div class="row m-2">
                 <div class="col-sm-12">
@@ -184,6 +217,8 @@
                   <th class="text-center">Nombre</th>
                   <th class="text-center">Apellido</th>
                   <th class="text-center">Celular</th> 
+                  <th class="text-center">Edad</th>
+                  <th class="text-center">Operaciones</th> 
                 </tr>
                 </thead>
                 <tbody class="text-center">
@@ -193,6 +228,12 @@
                     <td>{{  $Afx->Afx_Nombre }}</td>
                     <td>{{  $Afx->Afx_Apellido }}</td>
                     <td>{{  $Afx->Afx_Cel }}</td>
+                    <td>{{  edad( $Afx->Afx_Nacimiento ) }} años</td>
+                    <td>
+                      <a href="{{ route("Afectado.edit", $Afx->Afx_id ) }}">
+                          <i class="fa fa-edit text-cyan"></i>
+                      </a>
+                    </td>
                   </tr>
                 @empty
                 <tr>
@@ -205,7 +246,9 @@
                     <th class="text-center">Dni</th>
                     <th class="text-center">Nombre</th>
                     <th class="text-center">Apellido</th>
-                    <th class="text-center">Celular</th> 
+                    <th class="text-center">Celular</th>
+                    <th class="text-center">Edad</th> 
+                    <th class="text-center">Operaciones</th>  
                 </tfoot>
               </table>
             </div>
@@ -234,7 +277,17 @@
                         required: true, 
                         minlength: 4,
                         maxlength: 150
-                    }, 
+                    },
+                    Acx_Direccion: {
+                        required: true, 
+                        minlength: 4,
+                        maxlength: 150
+                    },
+                    Acx_Lugar: {
+                        required: true, 
+                        minlength: 4,
+                        maxlength: 150
+                    }
                 }  
         });    
         

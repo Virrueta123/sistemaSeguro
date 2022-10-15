@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\accidentes;
 use App\Models\Propietario;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class HomeController extends Controller
@@ -32,6 +34,8 @@ class HomeController extends Controller
         //         ->where(DB::raw("DATE_ADD(pendientes.Pex_Fecha,interval -1 day)"),fecha_hoy()) 
         //         ->where("pendientes.active","A") 
         //         ->get(); 
+        $accidentes = accidentes::all();
+
         $nseguros =  Propietario:: 
         where("activo","A") 
         ->get();
@@ -52,6 +56,7 @@ class HomeController extends Controller
         return view('home',[
             "segurosVencidos" =>$segurosVencidos,
             "nseguros" =>$nseguros,
+            "accidentes" =>$accidentes,
             "legends" =>json_encode($legends, JSON_NUMERIC_CHECK),
             "data" =>json_encode($data, JSON_NUMERIC_CHECK),
             
@@ -77,9 +82,12 @@ class HomeController extends Controller
                 }) 
                 ->addColumn('action', function($Data){
                     $msm = "estas segur@ que desea elminar este cliente";
-                    $actionBtn = '
-                    <a href="'.route("Propietario.edit",$Data->Prx_Id).'"><i class="fa fa-edit fa-2x"></i> </a> 
-                    ';
+                    $actionBtn = '';
+                        if (Auth::user()->tipo == "A") {
+                            $actionBtn = '
+                            <a href="'.route("Propietario.edit",$Data->Prx_Id).'"><i class="fa fa-edit fa-2x"></i> </a> 
+                            ';
+                        }
                     if($Data->Prx_VigenciaF  >  Carbon::now()->format("Y-m-d") ){
                         $actionBtn.= '<a href="'.route("Accidente.show",$Data->Prx_Id).'"><i class="fas fa-car-crash text-warning fa-2x"></i> </a>';
                     }  
@@ -114,9 +122,13 @@ class HomeController extends Controller
                     }) 
                     ->addColumn('action', function($Data){
                         $msm = "estas segur@ que desea elminar este cliente";
-                        $actionBtn = '
-                        <a href="'.route("Propietario.edit",$Data->Prx_Id).'"><i class="fa fa-edit fa-2x"></i> </a> 
-                        ';
+                        $actionBtn = '';
+                        if (Auth::user()->tipo == "A") {
+                            $actionBtn = '
+                            <a href="'.route("Propietario.edit",$Data->Prx_Id).'"><i class="fa fa-edit fa-2x"></i> </a> 
+                            ';
+                        }
+                        
                         if($Data->Prx_VigenciaF  >  Carbon::now()->format("Y-m-d") ){
                             $actionBtn.= '<a href="'.route("Accidente.show",$Data->Prx_Id).'"><i class="fas fa-car-crash text-warning fa-2x"></i> </a>';
                         }  
@@ -128,6 +140,31 @@ class HomeController extends Controller
                 return view('modules.reportes.diavencer', [
                     "fecha" => $fecha ]
                  );
+             }
+          
+    }
+
+    public function siniestro(Request $request){
+             
+            
+            if ($request->ajax()) {
+
+                $model = accidentes::all();
+
+                return DataTables::of($model)
+                    ->addIndexColumn() 
+                    ->addColumn('action', function($Data){
+                         
+                        $actionBtn = '
+                        <a href="'.route("Accidente.show",$Data->Prx_Id).'"><i class="fa fa-eye fa-1x"></i> </a> 
+                        ';
+                         
+                        return $actionBtn;
+                    }) 
+                    ->rawColumns(['action']) 
+                    ->make(true);
+             }else{
+                return view('modules.reportes.siniestros');
              }
           
     }

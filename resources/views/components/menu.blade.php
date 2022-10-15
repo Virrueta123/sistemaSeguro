@@ -19,4 +19,15 @@
         <li><a href="{{ route("Propietario.create") }}"><i class="fa fa-play"></i> Crear</a></li> 
       </ul>
     </li> 
+
+    @if ( Auth::user()->tipo == "A" )
+    <li>
+      <a href="{{ route("Usuario.index") }}">
+        <i class="fa fa-users-cog"></i> <span>Usuarios</span> 
+      </a>
+    </li> 
+
+    @endif
+ 
+    
   </ul>

@@ -9,7 +9,7 @@ class afectados extends Model
 {
     use HasFactory;
     protected $table="afectados";
-    protected $primaryKey ="Afx_Id";
+    protected $primaryKey ="Afx_id";
     protected $guarded = []; 
     public $timestamps = false;
 }

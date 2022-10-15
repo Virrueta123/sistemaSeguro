@@ -21,7 +21,7 @@
    <div class="row">
       
       <!-- /.col -->
-      <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class=" col-sm-4 ">
         <div class="info-box">
           <span class="info-box-icon bg-red"><i class="fa-solid fa-file-circle-xmark"></i></span>
 
@@ -37,7 +37,7 @@
       <!-- /.col -->
     
 
-      <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class=" col-sm-4 ">
         <div class="info-box">
           <span class="info-box-icon bg-blue"><i class="fa-sharp fa-solid fa-users"></i></span>
 
@@ -51,6 +51,19 @@
         <!-- /.info-box -->
       </div>
      
+      <div class=" col-sm-4 ">
+        <div class="info-box">
+          <span class="info-box-icon bg-warning"><i class="fas fa-car-crash"></i></span>
+
+          <div class="info-box-content">
+            <span class="info-box-text">SINIESTROS ATENDIDOS</span>
+            <span class="info-box-number">{{ count($accidentes) }}</span>
+            <span class="info-box-number"><a href="{{ route("Reporte.siniestros") }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> ver mas</a>  </span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
       <!-- /.col -->
     </div>
 </div>

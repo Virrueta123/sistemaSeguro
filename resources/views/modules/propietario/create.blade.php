@@ -197,7 +197,7 @@
         </div> -->
         
         <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="submit" class="btn btn-primary btn-submit">Registrar</button>
         </div>
 
       </form>
@@ -218,10 +218,10 @@
 $(document).ready(function(){
     
     $.ajaxSetup({
-    headers: {
-       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-}); 
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    }); 
 
     $("#BtnDni").click(function (e) {  
         
@@ -232,13 +232,11 @@ $(document).ready(function(){
             url: "{{ route('consultadniajax') }}",
             data: { dni:dni },
             beforeSend: function(){
-                 
+                $("#preload").fadeIn();
             },
             success: function(response) {
            
-                data = JSON.parse(response) 
-        
-                
+                data = JSON.parse(response)  
                 switch (data.tipo) {
                     case 'success':
                         $("#Prx_Nombre").val(data.mensaje.nombres)
@@ -277,10 +275,9 @@ $(document).ready(function(){
                         });
                         $("#Prx_Nombre").val("");
                         $("#Prx_Apellido").val("");
-                    break;
-                
-                        
+                    break;  
                 }
+                $("#preload").fadeOut();
             }
         }); 
     });

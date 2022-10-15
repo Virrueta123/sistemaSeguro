@@ -46,6 +46,7 @@ class AfectadosController extends Controller
             "Afx_Apellido" =>"required",
             "Afx_Dni" =>"required",
             "Afx_Cel" =>"required",
+            "Afx_Nacimiento" => "required",
         ]);
         $valid["Acx_id"] = $Acx_Id;
 
@@ -79,9 +80,44 @@ class AfectadosController extends Controller
      * @param  \App\Models\afectados  $afectados
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, afectados $afectados)
+    public function edit($Afx_Id)
     {
-        //
+        $Afx = afectados::where("Afx_id",$Afx_Id)->first();
+        return view("modules.afectados.edit",[
+            "Afx" => $Afx
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\afectados  $afectados
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $Afx_Id)
+    {
+        $valid = $request->validate([ 
+            "Afx_Nombre" => "required",
+            "Afx_Apellido" => "required",
+            "Afx_Dni" => "required",
+            "Afx_Cel" => "required",
+            "Afx_Nacimiento" => "required",
+        ]); 
+        
+        $Afx = afectados::where("Afx_id",$Afx_Id);
+        
+        $update = $Afx->update($valid);
+ 
+        $Acxget =  accidentes::where("Acx_id",$Afx->first()->Acx_Id)->first();
+   
+        if( $update ){  
+            session()->flash('successo', 'El registro se edito correctamente');
+            return redirect()->route("Accidente.show",$Acxget->Prx_Id);
+        }else{
+            session()->flash('erroro', 'fallo el registro, intentelo de nuevo');
+            return redirect()->route("Accidente.show",$Acxget->Prx_Id);
+        } 
     }
 
     /**

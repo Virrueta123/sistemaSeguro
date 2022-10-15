@@ -27,3 +27,25 @@ const sweetAlert = function(message,type,time=2500){
 		timer: time
 	}) 
 }
+
+
+// submit delete
+
+function FormDelete(text,msm,event){ 
+	event.preventDefault();
+	Swal.fire({
+		title: msm,
+		text: "¡No podrás revertir esto!",
+		icon: 'warning',
+		customClass: 'swal-wide',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Si'
+	}).then((result) => {
+		if (result.isConfirmed) { 
+			javascript:document.getElementById('formdelete' + text).submit();
+			return false; 
+		}
+	})
+}

@@ -39,15 +39,24 @@
             <div class="col-xs-6">
                 <div class="form-group">
                     <label>Nombres</label>
-                    <input type="text" name="Afx_Nombre" class="form-control" placeholder="Nombres...">
+                    <input type="text" name="Afx_Nombre" id="Afx_Nombre" class="form-control" placeholder="Nombres...">
                 </div>   
             </div>
             <div class="col-xs-6">
                 <div class="form-group">
                     <label>Apellido</label>
-                    <input type="text" name="Afx_Apellido" class="form-control" placeholder="Apellido...">
+                    <input type="text" name="Afx_Apellido" id="Afx_Apellido" class="form-control" placeholder="Apellido...">
                 </div> 
             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label>Fecha de Nacimiento</label>
+                    <input type="date" name="Afx_Nacimiento" id="Afx_Nacimiento" class="form-control" placeholder="Nombres...">
+                </div>   
+            </div> 
         </div>
 
         <div class="row">
@@ -55,8 +64,13 @@
             <div class="col-xs-6">
                 <div class="form-group">
                     <label>Dni</label>
-                    <input  name="Afx_Dni" id="Afx_Dni" class="form-control" >
- 
+                    
+                    <div class="input-group input-group">
+                        <input  name="Afx_Dni" id="Afx_Dni" class="form-control" > 
+                            <span class="input-group-btn">
+                              <button id="BtnDni" type="button" class="btn btn-info btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                    </div>
                 </div>   
             </div>
 
@@ -69,7 +83,7 @@
         </div>
    
         <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="submit" class="btn btn-primary btn-submit">Registrar</button>
         </div>
 
       </form>
@@ -85,7 +99,72 @@
 )
  
 <script>
-   
+       
+    $.ajaxSetup({
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    }); 
+
+  $("#BtnDni").click(function (e) {  
+        
+        dni = $("#Afx_Dni").val();
+        
+        $.ajax({ 
+            type: "POST",
+            url: "{{ route('consultadniajax') }}",
+            data: { dni:dni },
+            beforeSend: function(){
+                $("#preload").fadeIn();
+            },
+            success: function(response) {
+           
+                data = JSON.parse(response)  
+                switch (data.tipo) {
+                    case 'success':
+                        $("#Afx_Nombre").val(data.mensaje.nombres)
+                        $("#Afx_Apellido").val(data.mensaje.apellidoPaterno+" "+ data.mensaje.apellidoMaterno) 
+                        console.log(data.mensaje.nombres)
+                        Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: "Se encontro los datos",
+                                showConfirmButton: false,
+                                timer: 2500
+                        }) 
+                        break;
+
+                    case 'error':
+                        Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: "Se encontro los datos",
+                                showConfirmButton: false,
+                        })    
+                        
+                        $("#Afx_Nombre").val("");
+                        $("#Afx_Apellido").val("");
+                        break;
+
+                    case 'validate':
+                        data.mensaje.forEach(element => {  
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: element,
+                                showConfirmButton: false,
+                                timer: 2500
+                            }) 
+                        });
+                        $("#Afx_Nombre").val("");
+                        $("#Afx_Apellido").val("");
+                    break;  
+                }
+                $("#preload").fadeOut();
+            }
+        }); 
+    });
+  
 $(document).ready(function(){
     
     $("#Afx_Dni").inputmask("99999999"); 
@@ -117,6 +196,9 @@ $(document).ready(function(){
                 Afx_Cel: { 
                     required: true, 
                     number:true,
+                },
+                Afx_Nacimiento: { 
+                    required: true,  
                 }
             }  
     });    
