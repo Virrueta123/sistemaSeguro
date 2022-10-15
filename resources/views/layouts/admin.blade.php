@@ -420,9 +420,9 @@
                }) 
     @endif
 
-    $(".btn-submit").click(function (e) { 
-      $("#preload").fadeIn()
-    });
+    // $(".btn-submit").click(function (e) { 
+    //   $("#preload").fadeIn()
+    // });
 
     window.addEventListener('load', function() {
         $("#preload").fadeOut()
