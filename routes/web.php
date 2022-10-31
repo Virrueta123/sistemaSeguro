@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */ 
 
+/**-----------clase vehicular---------------**/
+/**-----------------------------**/
+
+Route::resource("clase",App\Http\Controllers\claseController::class);
+Route::get('/clasedata', [App\Http\Controllers\claseController::class, 'data'])->name('clase.data'); 
+
+/**----------End--------**/
+/**-----------------------------**/
+
 // routes propietarios
 Route::get('/propietarios', [App\Http\Controllers\propietarioController::class, 'index'])->name('Propietario.index'); 
 Route::get('/propietariosdata', [App\Http\Controllers\propietarioController::class, 'data'])->name('Propietario.data'); 
@@ -24,7 +33,8 @@ Route::delete('/propietarios/{id}', [App\Http\Controllers\propietarioController:
 Route::post('/propietarios', [App\Http\Controllers\propietarioController::class, 'store'])->name('Propietario.store'); 
 
 Route::post('/consultadniajax', [App\Http\Controllers\propietarioController::class, 'consultadniajax'])->name('consultadniajax'); 
-
+Route::post('/consultarucajax', [App\Http\Controllers\propietarioController::class, 'consultarucajax'])->name('consultarucajax'); 
+Route::post('/duplicadoajax', [App\Http\Controllers\propietarioController::class, 'duplicadoajax'])->name('duplicadoajax'); 
 
 // routes accidente
 Route::get('/accidente', [App\Http\Controllers\accidenteController::class, 'index'])->name('Accidente.index'); 
@@ -67,6 +77,15 @@ Route::post('/uniqueuser', [App\Http\Controllers\usuarioController::class, 'uniq
 Route::get('/vencidos', [App\Http\Controllers\HomeController::class, 'vencidos'])->name('Reporte.vencidos'); 
 Route::get('/diavencidos/{fecha}', [App\Http\Controllers\HomeController::class, 'diavencidos'])->name('Reporte.diavencidos'); 
 Route::get('/siniestro', [App\Http\Controllers\HomeController::class, 'siniestro'])->name('Reporte.siniestros'); 
+
+//padron
+Route::get('/padronsunat', [App\Http\Controllers\padronController::class, 'padronSunat'])->name('Reporte.padronSunat'); 
+Route::post('/padronsunatbetweendate', [App\Http\Controllers\padronController::class, 'padronSunatBetweenDate'])->name('Reporte.padronSunatBetweenDate'); 
+
+Route::get('/padronSbs', [App\Http\Controllers\padronController::class, 'padronSbs'])->name('Reporte.padronSbs'); 
+Route::post('/padronSbsbetweendate', [App\Http\Controllers\padronController::class, 'padronSbsBetweenDate'])->name('Reporte.padronSbsBetweenDate'); 
+
+Route::get('/imprimircat/{Prx}', [App\Http\Controllers\propietarioController::class, 'printFormato'])->name('Propietario.printFormato'); 
 
 Auth::routes();
 

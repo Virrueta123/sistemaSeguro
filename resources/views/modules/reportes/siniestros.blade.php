@@ -31,6 +31,7 @@
       <table id="cat" class="table table-bordered table-striped">
         <thead>
         <tr>
+          <th class="text-center">Nro Siniestro</th>
           <th class="text-center">Descripcion</th>
           <th class="text-center">Lugar</th>
           <th class="text-center">Direccion</th>
@@ -43,6 +44,7 @@
         </tbody>
         <tfoot>
           <tr>
+            <th class="text-center">Nro Siniestro</th>
             <th class="text-center">Descripcion</th>
             <th class="text-center">Lugar</th>
             <th class="text-center">Direccion</th> 
@@ -67,12 +69,13 @@
   $(function () {
     
     var table = $('#cat').DataTable({
-      "order": [[ 0, "ASC" ]],
+      "order": [[ 1, "DESC" ]],
         language: { 
             "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json" 
         }, 
         ajax: "{{ route("Reporte.siniestros") }}",
         columns: [
+            {data: 'Acx_Nro', name: 's'}, 
             {data: 'Acx_Desc', name: 'Nombres'},  
             {data: 'Acx_Lugar', name: 'Nombres'},  
             {data: 'Acx_Direccion', name: 'Nombres'},  

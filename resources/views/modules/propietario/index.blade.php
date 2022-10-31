@@ -75,7 +75,7 @@
             {data: 'Prx_VigenciaI', name: 'Nombres'},  
             {data: 'Prx_VigenciaF', name: 'Nombres'}, 
             {data: 'asociado', name: 'Nombres'}, 
-            {data: 'Prx_Categoria', name: 'Nombres'}, 
+            {data: 'Csx_Nombre', name: 'Nombres'}, 
             {data: 'estado', name: 'Nombres'}, 
              {
                  data: 'action', 

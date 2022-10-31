@@ -26,7 +26,23 @@
         <i class="fa fa-users-cog"></i> <span>Usuarios</span> 
       </a>
     </li> 
+    <li>
+      <a href="{{ route("clase.index") }}">
+        <i class="fa fa-car-alt"></i> <span>Clase vehicular</span> 
+      </a>
+    </li> 
 
+    <li>
+      <a href="{{ route("Reporte.padronSunat") }}">
+        <i class="fa-solid fa-building"></i> <span>Padron Sunat</span> 
+      </a>
+    </li> 
+
+    <li>
+      <a href="{{ route("Reporte.padronSbs") }}">
+        <i class="fa-solid fa-building"></i> <span>Padron Sbs</span> 
+      </a>
+    </li> 
     @endif
  
     

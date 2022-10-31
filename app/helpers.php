@@ -61,5 +61,10 @@ function generateDates(string $since, string $until = null) {
 }
 
 function moneyformat($money){
-    return number_format($money, 2, '.', ',');
+    return number_format($money, 2, '.', ','); 
 }
+
+function porcentaje($monto,$porcent){
+    return $monto * $porcent/100; 
+}
+

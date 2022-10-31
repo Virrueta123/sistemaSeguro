@@ -36,6 +36,8 @@ class accidenteController extends Controller
 
         $valid["Prx_Id"] = $Prx_Id;
         $valid["Acx_Created"] = fecha_hoy();
+                 
+        $valid["Acx_Nro"] = accidentes::all()->count() == 0 ? 1 : accidentes::max('Acx_Nro') + 1;
 
         $Acx = accidentes::create($valid);
 
@@ -63,8 +65,9 @@ class accidenteController extends Controller
         }else{
             $Afxs = [];
         } 
+        $count = 0;
         return view("modules.accidentes.show",[ 
-            "Prx" => $Prx,"Acx" => $Acx,"Afxs" => $Afxs
+            "Prx" => $Prx,"Acx" => $Acx,"Afxs" => $Afxs,"count" =>$count
         ]);
     }
     /**

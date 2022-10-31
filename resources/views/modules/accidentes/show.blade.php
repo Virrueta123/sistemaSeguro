@@ -163,7 +163,7 @@
           @else
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <h3 class="profile-username text-center">Accidente</h3>
+              <h3 class="profile-username text-center">Accidente Nº {{ $Acx->Acx_Nro }} </h3>
 
               <div class="row">
                 <div class="col-sm-12">
@@ -210,9 +210,11 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+               
               <table id="cat" class="table table-bordered table-striped">
                 <thead class="text-center">
                 <tr >
+                  <th class="text-center">Nro</th>
                   <th class="text-center">Dni</th>
                   <th class="text-center">Nombre</th>
                   <th class="text-center">Apellido</th>
@@ -222,8 +224,11 @@
                 </tr>
                 </thead>
                 <tbody class="text-center">
+                
                 @forelse ( $Afxs as $Afx)
                   <tr>
+                    @php $count++; @endphp 
+                    <td>{{  $Acx->Acx_Nro }}.{{  $count }}</td>
                     <td>{{  $Afx->Afx_Dni }}</td>
                     <td>{{  $Afx->Afx_Nombre }}</td>
                     <td>{{  $Afx->Afx_Apellido }}</td>
@@ -243,6 +248,7 @@
                   
                 </tbody>
                 <tfoot class="text-center">
+                    <th class="text-center">Nro</th>
                     <th class="text-center">Dni</th>
                     <th class="text-center">Nombre</th>
                     <th class="text-center">Apellido</th>

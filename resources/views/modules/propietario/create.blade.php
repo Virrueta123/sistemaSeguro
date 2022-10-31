@@ -36,7 +36,25 @@
       <form id="propietario" role="form" method="POST" action="{{ route("Propietario.store") }}">
        
         @csrf
-    
+        <div class="row">
+            <div class="col-sm-4">
+                <label>N ruc</label>
+                
+                 <div class="input-group input-group">
+                    <input name="Prx_Ruc" id="Prx_Ruc" class="form-control" >
+                        <span class="input-group-btn">
+                          <button id="BtnRuc" type="button" class="btn btn-info btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                  </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label>Razon social</label>
+                    <input  name="Prx_Razon" id="Prx_Razon" class="form-control"  > 
+                </div>   
+            </div> 
+        </div>
+
         <div class="row">
             <div class="col-sm-4">
                 <label>Dni</label>
@@ -127,26 +145,31 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-2">
                 <div class="form-group">
                     <label>Modelo</label>
                     <input type="text" name="Prx_Modelo" id="Prx_Modelo" class="form-control"  > 
                 </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-4">
                 <div class="form-group">
-                    <label>Años de uso</label>
-                    <input type="number" name="Prx_Uso" id="Prx_Uso" class="form-control"  > 
-                </div>
+                    <label>Uso vehicular</label>
+                    <select name="Prx_Uso" class="form-control">
+                      <option value="">Seleciona un tipo de uso</option>  
+                      @foreach ($Uvxs as $Uvx)
+                        <option value="{{ $Uvx->Uvx_Id }}">{{ $Uvx->Uvx_Nombre }}</option>
+                      @endforeach 
+                    </select>
+                </div>   
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
                     <label>Clase Vehicular</label>
                     <select name="Prx_Categoria" class="form-control">
                       <option value="">Seleciona una clase</option>  
-                      <option value="Monto lineal">Monto lineal</option>
-                      <option value="Trimovil">Trimovil</option>
-                      <option value="Auto">Auto</option> 
+                      @foreach ($Csxs as $Csx)
+                        <option value="{{ $Csx->Csx_Id }}">{{ $Csx->Csx_Nombre }}</option>
+                      @endforeach 
                     </select>
                 </div>   
             </div>
@@ -282,12 +305,41 @@ $(document).ready(function(){
         }); 
     });
 
-
+    $("#BtnRuc").click(function (e) {  
+        
+        ruc = $("#Prx_Ruc").val();
+        
+        $.ajax({ 
+            type: "POST",
+            url: "{{ route('consultarucajax') }}",
+            data: { ruc:ruc },
+            beforeSend: function(){
+                $("#preload").fadeIn();
+            },
+            success: function(response) {
+            
+                if (typeof response.error == "undefined"){
+                    $("#Prx_Razon").val(response.nombre)
+                }else{
+                    
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: response.error,
+                        showConfirmButton: false,
+                        timer: 2500
+                    }) 
+                } 
+                $("#preload").fadeOut();
+            }
+        }); 
+    });
 
     $("#Prx_Dni").inputmask("99999999");
   
-     
     $("#Prx_Ubigeo").inputmask("999999"); 
+
+    $("#Prx_Ruc").inputmask("99999999999"); 
 
     $("#Prx_Contacto").inputmask("999 999 999");
  
@@ -361,11 +413,8 @@ $(document).ready(function(){
                     minlength: 1,
                     maxlength: 150
                 },
-                Prx_Uso: {
-                    number:true,
-                    required: true, 
-                    minlength: 1,
-                    maxlength: 3
+                Prx_Uso: { 
+                    required: true  
                 }
             }  
     });    
