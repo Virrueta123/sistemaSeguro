@@ -23,7 +23,7 @@ class expPdxSunat implements FromView,ShouldAutoSize
     }
     public function view(): View
     {    
-        return view('modules.reportes.padronSbsTable', [
+        return view('modules.reportes.padronSunatTable', [
             'padronSunats' => Propietario::select("*")
             ->join("clase","clase.Csx_Id","=","propietarios.Prx_Categoria") 
             ->join("usovehicular","usovehicular.Uvx_Id","=","propietarios.Prx_Uso") 

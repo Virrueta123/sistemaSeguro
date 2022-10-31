@@ -2,7 +2,7 @@
 <table class="table" border="1" >
     <thead> 
         <tr >
-            <th colspan="22" style="font-size:22px; margin:6px; background-color: #0082FC; border:3px solid rgb(0, 14, 76); color:white; text-align: center; padding: 4px;"> <h1>Padron Sunat de las fechas : {{ \Carbon\Carbon::parse($fechaI)->format("d/m/Y") }} hasta {{ \Carbon\Carbon::parse($fechaF)->format("d/m/Y") }}</h1></th>
+            <th colspan="22" style="font-size:22px; margin:6px; background-color: #0082FC; border:3px solid rgb(0, 14, 76); color:white; text-align: center; padding: 4px;"> <h1>Padron Sbs de las fechas : {{ \Carbon\Carbon::parse($fechaI)->format("d/m/Y") }} hasta {{ \Carbon\Carbon::parse($fechaF)->format("d/m/Y") }}</h1></th>
         </tr>
     <tr > 
         <th style="background-color: #0082FC; border:3px solid rgb(0, 14, 76); color:white; text-align: center; padding: 4px;">N° DE POLIZA</th>
