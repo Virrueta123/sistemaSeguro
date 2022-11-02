@@ -1,0 +1,12 @@
+@media print {
+
+    .printCat {
+        position: relative;
+        top: 35%;
+        transform: rotate(90deg);
+        scale: 1.4;
+    }
+  
+}
+
+ 

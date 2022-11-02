@@ -2,6 +2,7 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{{ asset("bower_components/bootstrap/dist/css/bootstrap.min.css") }}">
+  <link href="http://fonts.cdnfonts.com/css/cooper-black" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset("bower_components/font-awesome/css/all.min.css") }}"> 
   <!-- Ionicons -->
@@ -21,4 +22,18 @@
 
   <link rel="stylesheet" href="{{ asset("plugins/datatables-bs4/css/dataTables.bootstrap4.min.css") }}">
   <link rel="stylesheet" href="{{ asset("plugins/datatables-responsive/css/responsive.bootstrap4.min.css") }}">
+  <link rel="stylesheet" media="print" href="{{ asset("dist/css/print.css") }}" />
+
+  <style>
+     @media print {
+
+.printCat {
+  position: relative;
+  top: 27%;
+  transform: rotate(90deg);
+  scale: 1.4;
+}
+
+}
+  </style>
  

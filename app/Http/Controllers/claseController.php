@@ -58,6 +58,29 @@ class claseController extends Controller
             return redirect()->route("clase.index");
         }
     }
+    public function suspender($Csx_Id){
+         
+        $Csx = clase::where("Csx_Id",$Csx_Id);
+        $Csx = $Csx->update(["activo"=>"D"]);
+        if( $Csx ){  
+            session()->flash('successo', 'esta clase de suspendio correctamente');
+            return redirect()->route("clase.index");
+        }else{
+            session()->flash('erroro', 'fallo el registro, intentelo de nuevo');
+            return redirect()->route("clase.index");
+        }
+    }
+    public function activar($Csx_Id){
+        $Csx = clase::where("Csx_Id",$Csx_Id);
+        $Csx = $Csx->update(["activo"=>"A"]);
+        if( $Csx ){  
+            session()->flash('successo', 'esta clase se activo correctamente');
+            return redirect()->route("clase.index");
+        }else{
+            session()->flash('erroro', 'fallo el registro, intentelo de nuevo');
+            return redirect()->route("clase.index");
+        }
+    }
     public function destroy($Csx_Id){
         return 'destroy';
     }
@@ -82,9 +105,28 @@ class claseController extends Controller
                 })
                 ->addColumn('action', function($Data){
                     $msm = "estas segur@ que desea elminar esta clase";
-                    $actionBtn = '
-                    <a href="'.route("clase.edit",$Data->Csx_Id).'"><i class="fa fa-edit fa-1x"></i> </a>
-                     
+                    $actionBtn="";
+                    if ($Data->activo == "A") {
+                        $msm = "estas segur@ que desea suspender esta clase"; 
+                        $actionBtn .= '<a  class="edit btn  btn-xs">
+                            <form method="POST"  id="formdeleteclasesuspender'.$Data->Csx_Id.'" action="'.route("clase.suspender",$Data->Csx_Id).'">
+                                    <input type="hidden" name="_token" value="'. csrf_token() .'">
+                                    <input name="_method" type="hidden" value="patch">
+                                    <button type="submit"  onclick="FormDelete(\'clasesuspender'.$Data->Csx_Id.'\',\''.$msm.'\',event)" class="btn btn-warning btn-xs" Data-toggle="tooltip" title="Delete"><i class="fa-solid fa-user-slash fa-1x"> </i></button>
+                            </form>
+                        </a>';
+                    } else {
+                        $msm = "estas segur@ que desea activar esta clase"; 
+                        $actionBtn .= '<a  class="edit btn  btn-xs">
+                        <form method="POST"  id="formdeleteclasesuspender'.$Data->Csx_Id.'" action="'.route("clase.activar",$Data->Csx_Id).'">
+                                <input type="hidden" name="_token" value="'. csrf_token() .'">
+                                <input name="_method" type="hidden" value="patch">
+                                <button type="submit"  onclick="FormDelete(\'clasesuspender'.$Data->Csx_Id.'\',\''.$msm.'\',event)" class="btn btn-success btn-xs" Data-toggle="tooltip" title="Delete"><i class="fa-solid fa-user-slash fa-1x"> </i></button>
+                        </form>
+                        </a>';
+                    }
+                    $actionBtn.= '
+                    <a href="'.route("clase.edit",$Data->Csx_Id).'"><i class="fa fa-edit fa-1x"></i> </a> 
                     ';
                     return $actionBtn;
                 }) 

@@ -36,6 +36,7 @@
           <th class="text-center">Lugar</th>
           <th class="text-center">Direccion</th>
           <th class="text-center">Fecha</th>
+          <th class="text-center">Nº afectados</th>
           <th class="text-center">Operaciones</th>
         </tr>
         </thead>
@@ -49,6 +50,7 @@
             <th class="text-center">Lugar</th>
             <th class="text-center">Direccion</th> 
             <th class="text-center">Fecha</th>
+            <th class="text-center">Nº afectados</th>
             <th class="text-center">Operaciones</th>
           </tr>
         </tfoot>
@@ -80,7 +82,7 @@
             {data: 'Acx_Lugar', name: 'Nombres'},  
             {data: 'Acx_Direccion', name: 'Nombres'},  
             {data: 'Acx_Created', name: 'Nombres'},
-            
+            {data: 'afectados', name: 'Nombres'},
              {
                  data: 'action', 
                  name: 'action' 

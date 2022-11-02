@@ -28,7 +28,11 @@ class propietarioController extends Controller
 
     public function printFormato($Prx)
     {
-        $PrxGet = Propietario::where("Prx_Id",$Prx)->first();
+        $PrxGet = Propietario::select("*")
+        ->join("clase","clase.Csx_Id","=","propietarios.Prx_Categoria") 
+        ->join("usovehicular","usovehicular.Uvx_Id","=","propietarios.Prx_Uso") 
+        ->where("Prx_Id",$Prx)
+        ->first();
         return view("modules.formatocat.printcat",[
             "PrxGet" => $PrxGet
         ]);
@@ -66,6 +70,8 @@ class propietarioController extends Controller
         $valid = $request->validate([
             "Prx_Ruc" =>"",
             "Prx_Razon" =>"",
+            "Prx_Provincia" =>"",
+            "Prx_Departamento" =>"",
             "Prx_Nombre" =>"required",
             "Prx_Apellido" =>"required",
             "Prx_Dni" =>"required",
@@ -81,10 +87,13 @@ class propietarioController extends Controller
             "Prx_Modelo" =>"required",
             "Prx_Uso" =>"required"
         ]);
+        
         $codigo = DB::select('SELECT GenerarCodigoCat() as codigo' )[0]->codigo;
         
         $valid["Prx_Ruc"] = $request->all()["Prx_Ruc"] == "" ? "nt" : $request->all()["Prx_Ruc"];
         $valid["Prx_Razon"] = $request->all()["Prx_Razon"] == "" ? "nt" : $request->all()["Prx_Razon"];
+        
+        $valid["Prx_HoraC"] = Carbon::now()->format("H:i:s");
 
         $valid["Prx_NroCat"] = $codigo;
         $valid["Prx_Contacto"] = str_replace(" ", "", $request->all()["Prx_Contacto"]);
@@ -123,13 +132,18 @@ class propietarioController extends Controller
      */
     public function edit($id)
     { 
-        $Prx = Propietario::where("Prx_Id",$id)->first();
-        $categoria = ["Monto lineal","Trimovil","Auto"]; 
+        $Prx = Propietario::select("*")
+        ->join("clase","clase.Csx_Id","=","propietarios.Prx_Categoria") 
+        ->join("usovehicular","usovehicular.Uvx_Id","=","propietarios.Prx_Uso") 
+        ->where("Prx_Id",$id)
+        ->first();
+        $clase = clase::where("activo","A")->get();
+        $uso = usovehicular::where("Uvx_Activo","A")->get();
         $anos = ["2000","2001","2002","2003", "2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021","2022"]; 
 
 
         return view("modules.propietario.edit",[ 
-            "Prx" => $Prx,"categoria" => $categoria,"anos" => $anos,
+            "Prx" => $Prx,"clase" =>  $clase,"anos" => $anos,"uso" =>  $uso
         ]);
     }
 
@@ -143,6 +157,8 @@ class propietarioController extends Controller
     public function update(Request $request, $id)
     {
         $valid = $request->validate([ 
+            "Prx_Provincia" =>"",
+            "Prx_Departamento" =>"",
             "Prx_Nombre" =>"required",
             "Prx_Apellido" =>"required",
             "Prx_Dni" =>"required",
@@ -267,9 +283,13 @@ class propietarioController extends Controller
                 }) 
                 ->addColumn('action', function($Data){
                     $msm = "estas segur@ que desea elminar este cliente";
-                    $actionBtn = '
-                    <a href="'.route("Propietario.printFormato",$Data->Prx_Id).'"><i class="fa-solid fa-print text-orange fa-2x"></i> </a>
-                    <a href="'.route("Propietario.edit",$Data->Prx_Id).'"><i class="fa fa-edit fa-2x"></i> </a>
+                    $actionBtn= "";
+                    if( $Data->Prx_VigenciaF  >  Carbon::now()->format("Y-m-d") ){
+                       $actionBtn.= '<a href="'.route("Propietario.printFormato",$Data->Prx_Id).'"><i class="fa-solid fa-print text-orange fa-2x"></i> </a>
+                       <a href="'.route("Propietario.edit",$Data->Prx_Id).'"><i class="fa fa-edit fa-2x"></i> </a>'; 
+                    }
+                    $actionBtn.= ' 
+                    
                     <a href="'.route("Accidente.show",$Data->Prx_Id).'"><i class="fas fa-car-crash text-warning fa-2x"></i> </a>
                     ';
                     return $actionBtn;

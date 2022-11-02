@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\accidentes;
+use App\Models\afectados;
 use App\Models\Propietario;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -153,6 +154,12 @@ class HomeController extends Controller
 
                 return DataTables::of($model)
                     ->addIndexColumn() 
+                    ->addColumn('afectados', function($Data){
+                         
+                         $afx = afectados::where("Acx_Id",$Data->Acx_Id)->get();
+                         
+                         return count($afx);
+                    }) 
                     ->addColumn('action', function($Data){
                          
                         $actionBtn = '

@@ -112,6 +112,21 @@
                 </div> 
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Provincia</label>
+                    <input type="text" id="Prx_Provincia" name="Prx_Provincia" class="form-control" placeholder="Provincia...">
+                </div>   
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Departamento</label>
+                    <input type="text" name="Prx_Departamento" class="form-control" placeholder="Departamento...">
+                </div> 
+            </div>
+        </div>
         
         <div class="col-sm-12">
         <h4 class="text-info"><i class="fa fa-automobile"></i> Datos del Vehiculo</h4>
@@ -371,6 +386,18 @@ $(document).ready(function(){
                     maxlength: 11
                 },
                 Prx_Direccion: {
+                    noespeciales: true,
+                    required: true, 
+                    minlength: 2,
+                    maxlength: 150
+                },
+                Prx_Departamento: {
+                    noespeciales: true,
+                    required: true, 
+                    minlength: 2,
+                    maxlength: 150
+                },
+                Prx_Provincia: {
                     noespeciales: true,
                     required: true, 
                     minlength: 2,

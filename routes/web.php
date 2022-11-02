@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource("clase",App\Http\Controllers\claseController::class);
 Route::get('/clasedata', [App\Http\Controllers\claseController::class, 'data'])->name('clase.data'); 
-
+Route::patch('/suspender/{id}', [App\Http\Controllers\claseController::class, 'suspender'])->name('clase.suspender');
+Route::patch('/activar/{id}', [App\Http\Controllers\claseController::class, 'activar'])->name('clase.activar');
 /**----------End--------**/
 /**-----------------------------**/
 

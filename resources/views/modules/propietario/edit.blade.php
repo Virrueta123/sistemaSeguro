@@ -97,7 +97,20 @@
                 </div> 
             </div>
         </div>
-        
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Provincia</label>
+                    <input type="text" id="Prx_Provincia" name="Prx_Provincia" value="{{ $Prx->Prx_Provincia }}" class="form-control" placeholder="Provincia...">
+                </div>   
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Departamento</label>
+                    <input type="text" name="Prx_Departamento" class="form-control" value="{{ $Prx->Prx_Departamento }}" placeholder="Departamento...">
+                </div> 
+            </div>
+        </div>
         <div class="col-sm-12">
         <h4 class="text-info"><i class="fa fa-automobile"></i> Datos del Vehiculo</h4>
         </div>
@@ -130,28 +143,32 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-2">
                 <div class="form-group">
                     <label>Modelo</label>
                     <input type="text" name="Prx_Modelo" id="Prx_Modelo" value="{{ $Prx->Prx_Modelo }}" class="form-control"  > 
                 </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-4">
                 <div class="form-group">
-                    <label>Años de uso</label>
-                    <input type="number" name="Prx_Uso" id="Prx_Uso" value="{{ $Prx->Prx_Uso }}" class="form-control"  > 
-                </div>
+                    <label>Uso vehicular</label>
+                    <select name="Prx_Uso" class="form-control">
+                    
+                      @foreach ($uso as $Uvx)
+                        <option value="{{ $Uvx->Uvx_Id }}"  {{ $Uvx->Uvx_Id == $Prx->Prx_Uso ? 'selected':'' }} >{{ $Uvx->Uvx_Nombre }}</option>
+                      @endforeach 
+                    </select>
+                </div>   
             </div>
+            
             <div class="col-sm-4">
                 <div class="form-group">
                     <label>Clase Vehicular</label>
                     <select name="Prx_Categoria" class="form-control"> 
-                      @foreach ($categoria as $ct)
-                        @if ($Prx->Prx_Categoria == $ct)
-                        <option selected value="{{ $ct }}">{{ $ct }}</option> 
-                        @else
-                        <option value="{{ $ct }}">{{ $ct }}</option> 
-                        @endif 
+                      @foreach ($clase as $ct)
+                         
+                        <option value="{{ $ct->Csx_Id }}" {{ $ct->Csx_Id == $Prx->Prx_Categoria ? 'selected':'' }}>{{ $ct->Csx_Nombre }}</option> 
+                        
                       @endforeach
                     </select>
                 </div>   
@@ -292,6 +309,18 @@ $(document).ready(function(){
                     number:true,
                     minlength: 8,
                     maxlength: 8
+                },
+                Prx_Departamento: {
+                    noespeciales: true,
+                    required: true, 
+                    minlength: 2,
+                    maxlength: 150
+                },
+                Prx_Provincia: {
+                    noespeciales: true,
+                    required: true, 
+                    minlength: 2,
+                    maxlength: 150
                 },
                 Prx_VigenciaI: {
                     required: true, 

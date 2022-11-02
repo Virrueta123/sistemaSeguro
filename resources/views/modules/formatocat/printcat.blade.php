@@ -31,7 +31,7 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body" >
-        <div id="printCat" style="transform: rotate(90deg); transform-origin: 40% center; width: 100%; height: 100%;">
+        <div id="printCat"  class="printCat">
             @include("modules.formatocat.formato")
         </div>
          
