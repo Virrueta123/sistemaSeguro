@@ -191,13 +191,9 @@ class padronController extends Controller
             ->where("ReclamoPendientedePagoIdm",">",0)
             ->whereBetween('Acx_Created', [$fechaI, $fechaF])->get();  
 
-      
-        if ( count($ReclamoPendientedePagoGm) == 0 ) {
-            session()->flash('erroro', 'No hay ningun dato en esas fechas ');
-            return redirect()->route("Reporte.padronSbs");
-        } else {
+       
             return Excel::download(new exportReporteTotal($fechaI,$fechaF,$ReclamoPendientedePagoGm,$ReclamoPendientedePagoIt,$ReclamoPendientedePagoIp,$ReclamoPendientedePagoGs,$ReclamoPendientedePagoIdm), 'resumenTotal'.fecha_hoy().'_'.Carbon::now()->format("H:i:s").'.xlsx' );
-        } 
+         
         
     }
     
