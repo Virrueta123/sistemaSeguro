@@ -64,6 +64,17 @@ function moneyformat($money){
     return number_format($money, 2, '.', ','); 
 }
 
+function convertmoney($money){ 
+    
+    if (strpos($money, ',') !== false) {
+        $valor = explode(',',$money);
+        return $valor[0]."".$valor[1];
+    }else{
+        return $money;
+    }
+    
+}
+
 function porcentaje($monto,$porcent){
     return $monto * $porcent/100; 
 }

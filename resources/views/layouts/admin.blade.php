@@ -413,10 +413,10 @@
     @if ( session()->has('erroro') ) 
                Swal.fire({
                position: 'center',
-               icon: 'success',
-               title: '{{ session("error") }}',
+               icon: 'warning',
+               title: '{{ session("erroro") }}',
                showConfirmButton: false,
-               timer: 2500
+               timer: 5000
                }) 
     @endif
 

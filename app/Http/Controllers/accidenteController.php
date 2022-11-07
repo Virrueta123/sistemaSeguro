@@ -9,6 +9,15 @@ use Illuminate\Http\Request;
 
 class accidenteController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -58,14 +67,21 @@ class accidenteController extends Controller
      */
     public function show($id)
     {
+        
         $Acx = accidentes::where("Prx_Id",$id)->first();
-        $Prx = Propietario::where("Prx_Id",$id)->first();
+        $Prx = Propietario::select("*")
+        ->join("clase","clase.Csx_Id","=","propietarios.Prx_Categoria") 
+        ->join("usovehicular","usovehicular.Uvx_Id","=","propietarios.Prx_Uso") 
+        ->where("Prx_Id",$id)
+        ->first();
+
         if ($Acx) {
             $Afxs = afectados::where("Acx_Id",$Acx->Acx_Id)->get();
         }else{
             $Afxs = [];
         } 
         $count = 0;
+        
         return view("modules.accidentes.show",[ 
             "Prx" => $Prx,"Acx" => $Acx,"Afxs" => $Afxs,"count" =>$count
         ]);
@@ -77,9 +93,44 @@ class accidenteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
     public function update(Request $request, $id)
     {
-        //
+        $valid = $request->validate([ 
+            "Acx_Desc" =>"required",
+            "Acx_Lugar" =>"required",
+            "Acx_Direccion" =>"required"
+        ]);
+        
+        $valid["BeneficiosPagadosGm"] = convertmoney($request->all()["BeneficiosPagadosGm"]);
+        $valid["ReclamoPendientedePagoGm"] = convertmoney($request->all()["ReclamoPendientedePagoGm"]);
+
+        $valid["BeneficiosPagadosIt"] = convertmoney($request->all()["BeneficiosPagadosIt"]);
+        $valid["ReclamoPendientedePagoIt"] = convertmoney($request->all()["ReclamoPendientedePagoIt"]);
+
+        $valid["BeneficiosPagadosIp"] = convertmoney($request->all()["BeneficiosPagadosIp"]);
+        $valid["ReclamoPendientedePagoIp"] = convertmoney($request->all()["ReclamoPendientedePagoIp"]);
+
+        $valid["BeneficiosPagadosGs"] = convertmoney($request->all()["BeneficiosPagadosGs"]);
+        $valid["ReclamoPendientedePagoGs"] = convertmoney($request->all()["ReclamoPendientedePagoGs"]);
+
+        $valid["BeneficiosPagadosIdm"] = convertmoney($request->all()["BeneficiosPagadosIdm"]);
+        $valid["ReclamoPendientedePagoIdm"] = convertmoney($request->all()["ReclamoPendientedePagoIdm"]);
+
+        $Acx = accidentes::where("Acx_Id",$id);
+        
+        $update = $Acx->update($valid);
+ 
+        $Acxget =  accidentes::where("Acx_Id",$id)->first();
+      
+        if( $update ){  
+            session()->flash('successo', 'El registro se edito correctamente');
+            return redirect()->route("Accidente.show",$Acxget->Prx_Id);
+        }else{
+            session()->flash('erroro', 'No se encontro ningun cambio');
+            return redirect()->route("Accidente.show",$Acxget->Prx_Id);
+        } 
     } 
     /**
      * Remove the specified resource from storage.

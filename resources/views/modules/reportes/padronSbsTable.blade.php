@@ -62,7 +62,7 @@
         <td style="border:3px solid rgb(0, 14, 76); text-align: center;">{{ $padronSunat->Prx_NroPlaca }}</td>
         <td style="border:3px solid rgb(0, 14, 76); text-align: center;">SAN MARTIN</td> 
          
-        <td style="border:3px solid rgb(0, 14, 76); text-align: center;">x2</td> 
+        <td style="border:3px solid rgb(0, 14, 76); text-align: center;">{{ $padronSunat->Csx_Nombre }}</td> 
        
         <td style="border:3px solid rgb(0, 14, 76); text-align: center;">{{ $padronSunat->Uvx_Nombre }}</td> 
         <td style="border:3px solid rgb(0, 14, 76); text-align: center;">{{ $padronSunat->Csx_Nombre }}</td>
@@ -78,8 +78,9 @@
         @else
             <td style="border:3px solid rgb(0, 14, 76); text-align: center;">VENCIDO</td>
         @endif
+
         @php
-            $total += $padronSunat->Csx_MontoCat + $padronSunat->Csx_GananciaCat;
+            $total += $padronSunat->Csx_MontoCat ;
             $Ar += porcentaje($padronSunat->Csx_MontoCat,80);
             $Ag += porcentaje($padronSunat->Csx_MontoCat,20);
             $Ae += $padronSunat->Csx_GananciaCat;
@@ -105,9 +106,7 @@
         <td style="background-color: #0082FC; border:3px solid rgb(0, 14, 76); color:white; text-align: center;">S/ {{ moneyformat($Ar) }}</td>
         <td style="background-color: #0082FC; border:3px solid rgb(0, 14, 76); color:white; text-align: center;">S/ {{ moneyformat($Ag) }}</td>
         <td style="background-color: #0082FC; border:3px solid rgb(0, 14, 76); color:white; text-align: center;">S/ {{ moneyformat($Ae) }}</td>
-        <td></td>
-         
-        
+        <td></td> 
     </tr>
     </tbody>
 </table>

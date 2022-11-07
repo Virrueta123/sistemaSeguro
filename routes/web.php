@@ -21,6 +21,7 @@ Route::resource("clase",App\Http\Controllers\claseController::class);
 Route::get('/clasedata', [App\Http\Controllers\claseController::class, 'data'])->name('clase.data'); 
 Route::patch('/suspender/{id}', [App\Http\Controllers\claseController::class, 'suspender'])->name('clase.suspender');
 Route::patch('/activar/{id}', [App\Http\Controllers\claseController::class, 'activar'])->name('clase.activar');
+
 /**----------End--------**/
 /**-----------------------------**/
 
@@ -85,6 +86,17 @@ Route::post('/padronsunatbetweendate', [App\Http\Controllers\padronController::c
 
 Route::get('/padronSbs', [App\Http\Controllers\padronController::class, 'padronSbs'])->name('Reporte.padronSbs'); 
 Route::post('/padronSbsbetweendate', [App\Http\Controllers\padronController::class, 'padronSbsBetweenDate'])->name('Reporte.padronSbsBetweenDate'); 
+
+Route::get('/resumenPendiente', [App\Http\Controllers\padronController::class, 'resumenPendiente'])->name('Reporte.resumenPendiente'); 
+Route::post('/resumenPendientebetweendate', [App\Http\Controllers\padronController::class, 'resumenPendienteBetweenDate'])->name('Reporte.resumenPendienteBetweenDate'); 
+
+Route::get('/dbSiniestros', [App\Http\Controllers\padronController::class, 'dbSiniestros'])->name('Reporte.dbSiniestros'); 
+Route::post('/dbSiniestrosbetweendate', [App\Http\Controllers\padronController::class, 'dbSiniestrosBetweenDate'])->name('Reporte.dbSiniestrosBetweenDate'); 
+
+Route::get('/resumenTotal', [App\Http\Controllers\padronController::class, 'resumenTotal'])->name('Reporte.resumenTotal'); 
+Route::post('/resumenTotalbetweendate', [App\Http\Controllers\padronController::class, 'resumenTotalBetweenDate'])->name('Reporte.resumenTotalBetweenDate'); 
+
+
 
 Route::get('/imprimircat/{Prx}', [App\Http\Controllers\propietarioController::class, 'printFormato'])->name('Propietario.printFormato'); 
 

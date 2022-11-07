@@ -9,6 +9,15 @@ use Illuminate\Http\Request;
 
 class AfectadosController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -126,8 +135,19 @@ class AfectadosController extends Controller
      * @param  \App\Models\afectados  $afectados
      * @return \Illuminate\Http\Response
      */
-    public function destroy(afectados $afectados)
+    public function destroy( $Afx_Id )
     {
-        //
+        $Afx = afectados::where("Afx_id",$Afx_Id)->first();
+        $Acx = accidentes::where("Acx_Id",$Afx->Acx_Id)->first();
+     
+        $delete = afectados::where("Afx_id",$Afx_Id)->delete();
+
+        if( $delete ){  
+            session()->flash('successo', 'El registro se elimino correctamente');
+            return redirect()->route("Accidente.show",$Acx->Prx_Id);
+        }else{
+            session()->flash('erroro', 'fallo el registro, intentelo de nuevo');
+            return redirect()->route("Accidente.show",$Acx->Prx_Id);
+        } 
     }
 }

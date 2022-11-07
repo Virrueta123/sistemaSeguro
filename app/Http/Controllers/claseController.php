@@ -9,6 +9,15 @@ use Yajra\DataTables\Facades\DataTables;
 
 class claseController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(){
         return view("modules.clase.index",[
              
