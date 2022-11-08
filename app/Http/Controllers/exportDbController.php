@@ -29,9 +29,9 @@ class exportDbController extends Controller
 
     public function backupget($fecha){
          
-        if (Storage::disk('local')->exists("public/backups/sistemacat_{$fecha}.sql.gz")) {
+        
             return Storage::download("public/backups/sistemacat_{$fecha}.sql.gz");
-        }
+        
          
     }
 }
