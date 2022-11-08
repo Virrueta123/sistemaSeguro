@@ -11,7 +11,7 @@ class exportDbController extends Controller
 {
     public function backup_database()
     {
-        $file_name = 'sistemaCat_' . date('m-d-Y');
+        $file_name = 'sistemacat_' . date('Y-m-d');
     
         Artisan::call("backup:mysql-dump $file_name");
 
