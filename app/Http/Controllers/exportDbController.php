@@ -13,10 +13,9 @@ class exportDbController extends Controller
     {
         $file_name = 'sistemaCat_' . date('m-d-Y');
     
-        $laravel = Artisan::call("backup:mysql-dump $file_name");
+        Artisan::call("backup:mysql-dump $file_name");
 
-        return redirect()->back();
-      
+        return redirect()->route("backup"); 
     } 
 
     public function showBackup(){
