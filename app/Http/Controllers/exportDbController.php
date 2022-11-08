@@ -11,16 +11,28 @@ class exportDbController extends Controller
 {
     public function backup_database()
     {
-        $file_name = 'sistemaCat_' . date('m-d-Y_h_i_s_a');
+        $file_name = 'sistemaCat_' . date('m-d-Y');
     
         $laravel = Artisan::call("backup:mysql-dump $file_name");
 
-        dd($laravel);
+        return redirect()->back();
       
     } 
 
     public function showBackup(){
         $files = Storage::disk('local')->allFiles('public/backups');
-        dd($files);
+         
+        return view("modules.dbBackup",[
+            "files" => $files
+        ]);
+        
+    }
+
+    public function backupget($fecha){
+         
+        if (Storage::disk('local')->exists("public/backups/sistemacat_{$fecha}.sql.gz")) {
+            return Storage::download("public/backups/sistemacat_{$fecha}.sql.gz");
+        }
+         
     }
 }

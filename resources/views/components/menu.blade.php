@@ -57,6 +57,12 @@
                 <i class="fa-solid fa-file-excel"></i> <span>Resumen Total</span>
             </a>
         </li>
+
+        <li>
+            <a href="{{ route('backup') }}">
+                <i class="fa-solid fa-database"></i> <span>Copias de seguridad</span>
+            </a>
+        </li>
     @endif
 
 
