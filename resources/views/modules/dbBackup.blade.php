@@ -40,9 +40,11 @@
                             @php
                                 $parte1 = explode('_', $file);
                                 $parte2 = explode('.', $parte1[1]);
+                                $url = explode('/', $parte1[0]);
                             @endphp
                             <tr>
-                                <td class="text-success"> <i class="fa fa-database"></i> {{ $file }} </td>
+                                <td class="text-success"> <i class="fa fa-database"></i>
+                                    {{ $url[2] }}_{{ $parte1[1] }} </td>
                                 <td class="text-info">{{ \Carbon\Carbon::parse($parte2[0])->format('d/m/Y') }}</td>
                                 <td class="text-success text-center"><a href="{{ route('backupget', $parte2[0]) }}"> <i
                                             class="fa fa-download"></i> </a>

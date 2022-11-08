@@ -19,7 +19,7 @@ class exportDbController extends Controller
     } 
 
     public function showBackup(){
-        $files = Storage::disk('local')->allFiles('public/backups');
+        $files = Storage::disk('local')->files('public/backups');
          
         return view("modules.dbBackup",[
             "files" => $files
@@ -30,7 +30,7 @@ class exportDbController extends Controller
     public function backupget($fecha){
          
         if (Storage::disk('local')->exists("public/backups/sistemacat_{$fecha}.sql.gz")) {
-            return Storage::download("public/backups/sistemacat_{$fecha}.sql.gz");
+            return Storage::disk('local')->download("public/backups/sistemacat_{$fecha}.sql.gz");
         }
          
     }
