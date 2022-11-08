@@ -11,9 +11,9 @@ class exportDbController extends Controller
 {
     public function backup_database()
     {
-        $file_name = 'sistemacat_' . date('Y-m-d');
+        $file_name = 'sistemaCat_' . date('Y-m-d');
     
-        Artisan::call("backup:mysql-dump $file_name");
+        Artisan::call("backup:mysql-dump $file_name --compress");
 
         return redirect()->route("backup"); 
     } 
@@ -29,9 +29,9 @@ class exportDbController extends Controller
 
     public function backupget($fecha){
          
-        
-            return Storage::download("public/backups/sistemacat_{$fecha}.sql.gz");
-        
+        if (Storage::disk('local')->exists("public/backups/sistemaCat_{$fecha}.sql.gz")) {
+            return Storage::download("public/backups/sistemaCat_{$fecha}.sql.gz");
+        }
          
     }
 }
