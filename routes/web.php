@@ -99,6 +99,8 @@ Route::post('/resumenTotalbetweendate', [App\Http\Controllers\padronController::
 
 
 Route::get('/imprimircat/{Prx}', [App\Http\Controllers\propietarioController::class, 'printFormato'])->name('Propietario.printFormato'); 
+Route::get('/backup', [App\Http\Controllers\exportDbController::class, 'showBackup'])->name('backup'); 
+Route::get('/backupset', [App\Http\Controllers\exportDbController::class, 'backup_database'])->name('backupset'); 
 
 Auth::routes();
 

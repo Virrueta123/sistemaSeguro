@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'a54f85e4a716bafea60e56f76f95b18e96f93d7b',
+    'reference' => 'ef30d25e7d1788940ea233a2594f0773f661fa8c',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -19,6 +19,24 @@
       array (
       ),
       'reference' => '73e5b88775c64ccc0b84fb60836b30dc9d92ac4a',
+    ),
+    'aws/aws-crt-php' => 
+    array (
+      'pretty_version' => 'v1.0.2',
+      'version' => '1.0.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '3942776a8c99209908ee0b287746263725685732',
+    ),
+    'aws/aws-sdk-php' => 
+    array (
+      'pretty_version' => '3.240.11',
+      'version' => '3.240.11.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '4ab7d004ca11298bf400f3291f144d820fb97cd6',
     ),
     'brick/math' => 
     array (
@@ -454,7 +472,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'a54f85e4a716bafea60e56f76f95b18e96f93d7b',
+      'reference' => 'ef30d25e7d1788940ea233a2594f0773f661fa8c',
     ),
     'laravel/sail' => 
     array (
@@ -537,6 +555,15 @@
       ),
       'reference' => '3239285c825c152bcc315fe0e87d6b55f5972ed1',
     ),
+    'league/flysystem-aws-s3-v3' => 
+    array (
+      'pretty_version' => '1.0.30',
+      'version' => '1.0.30.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'af286f291ebab6877bac0c359c6c2cb017eb061d',
+    ),
     'league/fractal' => 
     array (
       'pretty_version' => '0.19.2',
@@ -616,6 +643,15 @@
         0 => '^1.0',
       ),
     ),
+    'mtdowling/jmespath.php' => 
+    array (
+      'pretty_version' => '2.6.1',
+      'version' => '2.6.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9b87907a81b87bc76d19a7fb2d61e61486ee9edb',
+    ),
     'myclabs/deep-copy' => 
     array (
       'pretty_version' => '1.11.0',
@@ -687,6 +723,15 @@
       array (
       ),
       'reference' => '3d81e4309d2a927abbe66df935f4bb60082805ad',
+    ),
+    'paulvl/backup' => 
+    array (
+      'pretty_version' => 'v4.0.2',
+      'version' => '4.0.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ba68aeb51797ba3e7bfdb7bd1a74b5938d2853b7',
     ),
     'phar-io/manifest' => 
     array (
@@ -1077,6 +1122,33 @@
       array (
       ),
       'reference' => 'c6c1022351a901512170118436c764e473f6de8c',
+    ),
+    'spatie/db-dumper' => 
+    array (
+      'pretty_version' => '2.21.1',
+      'version' => '2.21.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '05e5955fb882008a8947c5a45146d86cfafa10d1',
+    ),
+    'spatie/laravel-backup' => 
+    array (
+      'pretty_version' => '6.16.5',
+      'version' => '6.16.5.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '332fae80b12cacb9e4161824ba195d984b28c8fb',
+    ),
+    'spatie/temporary-directory' => 
+    array (
+      'pretty_version' => '1.3.0',
+      'version' => '1.3.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f517729b3793bca58f847c5fd383ec16f03ffec6',
     ),
     'swiftmailer/swiftmailer' => 
     array (
