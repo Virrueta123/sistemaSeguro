@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Storage;
 
 class exportDbController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function backup_database()
     {
         $file_name = 'sistemaCat_' . date('Y-m-d');
