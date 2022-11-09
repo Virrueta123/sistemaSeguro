@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Afocat | Dashboard</title>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="shortcut icon" type="image/png" href="{{ asset('dist/img/logo-icon.png') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('dist/img/logo-icon.png?2') }}">
     @include('components.style')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -49,7 +49,7 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><i class="fa fa-circle"></i></span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><img src="{{ asset('dist/img/logo-icon.png') }}" class="user-image"
+                    <span class="logo-lg"><img src="{{ asset('dist/img/logo-icon.png?2') }}" class="user-image"
                             alt=""></span>
                 </a>
 
