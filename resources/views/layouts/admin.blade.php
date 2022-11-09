@@ -77,7 +77,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
-                                    <li class="user-header" style="background: #DD4B39;">
+                                    <li class="user-header" style="background: #68C735;">
                                         <img src="{{ asset(Auth::user()->imgbackground) }}" class="img-circle"
                                             alt="User Image">
 
