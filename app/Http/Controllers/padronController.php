@@ -9,7 +9,7 @@ use App\Exports\exportResumenPedientes;
 use App\Exports\expPdxSunat;
 use App\Http\Controllers\Controller;
 use App\Models\accidentes;
-use App\Models\Propietario;
+use App\Models\propietario;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +35,7 @@ class padronController extends Controller
 
         $fechaI = Carbon::createFromFormat('d/m/Y', $data[0])->format('Y-m-d');
         $fechaF = Carbon::createFromFormat('d/m/Y', $data[1])->format('Y-m-d');
-        $Prx = Propietario::select("*")
+        $Prx = propietario::select("*")
             ->join("clase","clase.Csx_Id","=","propietarios.Prx_Categoria") 
             ->join("usovehicular","usovehicular.Uvx_Id","=","propietarios.Prx_Uso") 
             ->whereBetween('propietarios.Prx_VigenciaI', [$fechaI, $fechaF])->get();
@@ -58,7 +58,7 @@ class padronController extends Controller
         $fechaI = Carbon::createFromFormat('d/m/Y', $data[0])->format('Y-m-d');
         $fechaF = Carbon::createFromFormat('d/m/Y', $data[1])->format('Y-m-d');
          
-        $Prx = Propietario::select("*")
+        $Prx = propietario::select("*")
             ->join("clase","clase.Csx_Id","=","propietarios.Prx_Categoria") 
             ->join("usovehicular","usovehicular.Uvx_Id","=","propietarios.Prx_Uso") 
             ->whereBetween('propietarios.Prx_VigenciaI', [$fechaI, $fechaF])->get();
@@ -85,7 +85,7 @@ class padronController extends Controller
         $fechaI = Carbon::createFromFormat('d/m/Y', $data[0])->format('Y-m-d');
         $fechaF = Carbon::createFromFormat('d/m/Y', $data[1])->format('Y-m-d');
          
-        $Prx = Propietario::select("*")
+        $Prx = propietario::select("*")
             ->join("clase","clase.Csx_Id","=","propietarios.Prx_Categoria") 
             ->join("usovehicular","usovehicular.Uvx_Id","=","propietarios.Prx_Uso") 
             ->whereBetween('propietarios.Prx_VigenciaI', [$fechaI, $fechaF])->get();

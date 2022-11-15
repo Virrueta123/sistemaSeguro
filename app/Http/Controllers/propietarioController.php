@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\clase;
 use Peru\Jne\DniFactory;
-use App\Models\Propietario;
+use App\Models\propietario;
 use App\Models\usovehicular;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -38,7 +38,7 @@ class propietarioController extends Controller
 
     public function printFormato($Prx)
     {
-        $PrxGet = Propietario::select("*")
+        $PrxGet = propietario::select("*")
         ->join("clase","clase.Csx_Id","=","propietarios.Prx_Categoria") 
         ->join("usovehicular","usovehicular.Uvx_Id","=","propietarios.Prx_Uso") 
         ->where("Prx_Id",$Prx)
@@ -110,7 +110,7 @@ class propietarioController extends Controller
         $valid["Prx_VigenciaI"] = $vigenciaI;
         $valid["Prx_VigenciaF"] = $vigenciaF;
         
-        $Prx = Propietario::create($valid);
+        $Prx = propietario::create($valid);
 
         if( $Prx ){  
             session()->flash('successo', 'El registro se creo correctamente');
@@ -142,7 +142,7 @@ class propietarioController extends Controller
      */
     public function edit($id)
     { 
-        $Prx = Propietario::select("*")
+        $Prx = propietario::select("*")
         ->join("clase","clase.Csx_Id","=","propietarios.Prx_Categoria") 
         ->join("usovehicular","usovehicular.Uvx_Id","=","propietarios.Prx_Uso") 
         ->where("Prx_Id",$id)
@@ -188,7 +188,7 @@ class propietarioController extends Controller
             "Prx_Contacto"=>"required",
         ]);
         $valid["Prx_Contacto"] = str_replace(" ", "", $request->all()["Prx_Contacto"]);
-        $Prx = Propietario::where("Prx_Id",$id);
+        $Prx = propietario::where("Prx_Id",$id);
         $Prx = $Prx->update($valid);
 
         if( $Prx ){  
@@ -235,8 +235,8 @@ class propietarioController extends Controller
     public function duplicadoajax(Request $req)
     {
         
-        $Prx = Propietario::where("Prx_Id",$req->all()["Prx_Id"] );
-        $copia = Propietario::where("Prx_Id",$req->all()["Prx_Id"] )->first()->Prx_Duplicado + 1 ;
+        $Prx = propietario::where("Prx_Id",$req->all()["Prx_Id"] );
+        $copia = propietario::where("Prx_Id",$req->all()["Prx_Id"] )->first()->Prx_Duplicado + 1 ;
         $Prx = $Prx->update([ "Prx_Duplicado" => $copia ]);
         
         if ($Prx) {
@@ -276,7 +276,7 @@ class propietarioController extends Controller
 
     public function data(Request $request){
         if ($request->ajax()) {
-            $model = Propietario::select("*")
+            $model = propietario::select("*")
             ->join("clase","clase.Csx_Id","=","propietarios.Prx_Categoria")  
             ->get();
             return DataTables::of($model)

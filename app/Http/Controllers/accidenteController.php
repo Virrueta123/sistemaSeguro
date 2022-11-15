@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\accidentes;
 use App\Models\afectados;
-use App\Models\Propietario;
+use App\Models\propietario;
 use Illuminate\Http\Request;
 
 class accidenteController extends Controller
@@ -69,7 +69,7 @@ class accidenteController extends Controller
     {
         
         $Acx = accidentes::where("Prx_Id",$id)->first();
-        $Prx = Propietario::select("*")
+        $Prx = propietario::select("*")
         ->join("clase","clase.Csx_Id","=","propietarios.Prx_Categoria") 
         ->join("usovehicular","usovehicular.Uvx_Id","=","propietarios.Prx_Uso") 
         ->where("Prx_Id",$id)

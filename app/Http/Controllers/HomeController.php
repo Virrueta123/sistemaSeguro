@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\accidentes;
 use App\Models\afectados;
-use App\Models\Propietario;
+use App\Models\propietario;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,17 +37,17 @@ class HomeController extends Controller
         //         ->get(); 
         $accidentes = accidentes::all();
 
-        $nseguros =  Propietario:: 
+        $nseguros =  propietario:: 
         where("activo","A") 
         ->get();
-        $segurosVencidos = Propietario::
+        $segurosVencidos = propietario::
         where("Prx_VigenciaF","<",fecha_hoy())
         ->get();
         $dias = ["1","2","3","4","5","6"];
         $legends = [];
         $data = [];
         foreach ($dias as $dia) {
-            $prxs = count(Propietario::
+            $prxs = count(propietario::
             where("Prx_VigenciaF","=",Carbon::now()->addDay($dia)->format("Y-m-d"))
             ->get());
             array_push($legends,Carbon::now()->addDay($dia)->format("d-m-Y"));
@@ -66,7 +66,7 @@ class HomeController extends Controller
 
     public function vencidos(Request $request){
         if ($request->ajax()) {
-            $model = Propietario::
+            $model = propietario::
             where("Prx_VigenciaF","<",fecha_hoy())
             ->get();
             return DataTables::of($model)
