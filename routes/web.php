@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -66,7 +67,7 @@ Route::get('/usuarios/crear', [App\Http\Controllers\usuarioController::class, 'c
 Route::get('/usuarios/{id}', [App\Http\Controllers\usuarioController::class, 'show'])->name('Usuario.show');
 Route::get('/usuarios/{id}/editar', [App\Http\Controllers\usuarioController::class, 'edit'])->name('Usuario.edit');
 Route::get('/usuarios/{id}/editarperfil', [App\Http\Controllers\usuarioController::class, 'editperfil'])->name('Usuario.editPerfil');
-Route::patch('/usuarios/{id}', [App\Http\Controllers\usuarioController::class, 'update'])->name('Usuario.update');
+Route::patch('/usuariosperfil/{id}', [App\Http\Controllers\usuarioController::class, 'update'])->name('Usuario.update');
 Route::patch('/usuarios/{id}', [App\Http\Controllers\usuarioController::class, 'updates'])->name('Usuario.updates');
 Route::delete('/usuarios/{id}', [App\Http\Controllers\usuarioController::class, 'destroy'])->name('Usuario.delete');   
 Route::patch('/usuarios/{id}/suspender', [App\Http\Controllers\usuarioController::class, 'suspender'])->name('Usuario.suspender');
@@ -108,3 +109,4 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+ 
